@@ -1,36 +1,111 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Calendar, FileText, Clock, Receipt, PieChart, Smartphone } from 'lucide-react';
+import { 
+  Calendar, FileText, Clock, Receipt, PieChart, Zap,
+  MapPin, Users, Bell, Shield, Smartphone, BarChart3,
+  FileCheck, Wrench, CalendarDays, Globe, CreditCard, Settings
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-const features = [
-  {
-    icon: Calendar,
-    title: 'Resursplanering',
-    description: 'I Frost Bygg får du rätt person på rätt plats i rätt tid och hanterar enkelt frånvaro, semester och andra aktiviteter.',
-  },
-  {
-    icon: FileText,
-    title: 'Offerter',
-    description: 'Skapa proffsiga offerter snabbt och enkelt. Anpassa mallar, spåra status och konvertera till projekt med ett klick.',
-  },
-  {
-    icon: Receipt,
-    title: 'Fakturor',
-    description: 'Fakturera direkt från projekt eller tidrapporter. Integration med Fortnox och Visma för sömlös bokföring.',
-  },
+interface Feature {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+const features: Feature[] = [
   {
     icon: Clock,
-    title: 'Tidrapporter',
-    description: 'Enkel tidrapportering via mobil eller dator. Automatisk OB-beräkning och koppling till lönehantering.',
+    title: 'Digital tidstämpling',
+    description: 'Ett klick för att stämpla in/ut. Automatisk OB-beräkning för kväll, natt och helg.',
+    badge: 'Populär',
+  },
+  {
+    icon: MapPin,
+    title: 'GPS Auto-incheckning',
+    description: 'Automatisk incheckning när du kommer till arbetsplatsen. Konfigurerbar radie.',
+  },
+  {
+    icon: Zap,
+    title: 'AI Fakturaläsning',
+    description: 'Dra & släpp leverantörsfakturor. AI extraherar alla uppgifter automatiskt.',
+    badge: '2 kr/st',
+  },
+  {
+    icon: FileCheck,
+    title: 'ROT/RUT Automation',
+    description: 'AI genererar sammanfattningar för Skatteverket. Från 2 timmar till 2 minuter.',
+    badge: 'AI',
   },
   {
     icon: PieChart,
     title: 'Projektbudget',
-    description: 'Håll koll på projektets ekonomi i realtid. Se marginal, förbrukad tid och återstående budget direkt.',
+    description: 'Realtidsöverblick av budget vs. faktisk tid. Automatiska varningar vid överskridning.',
+  },
+  {
+    icon: Receipt,
+    title: 'Fakturering',
+    description: 'Skapa fakturor direkt från projekt. PDF-generering och e-postutskick.',
+  },
+  {
+    icon: Users,
+    title: 'Medarbetarhantering',
+    description: 'Roller, behörigheter och löneunderlag. Admin- och anställd-vyer.',
+  },
+  {
+    icon: CalendarDays,
+    title: 'Schemaläggning',
+    description: 'Drag & drop-kalender. Konfliktdetektering och frånvarohantering.',
+  },
+  {
+    icon: Wrench,
+    title: 'Arbetsordrar',
+    description: 'Komplett arbetsorderflöde med statusar, foton och prioritering.',
+  },
+  {
+    icon: FileText,
+    title: 'ÄTA-hantering',
+    description: 'Tilläggsarbeten med godkännandeflöde. Bilagor och automatisk fakturering.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Analytics Dashboard',
+    description: 'Diagram och rapporter för timmar, intäkter och projektöversikt.',
+  },
+  {
+    icon: Globe,
+    title: 'Kundportal',
+    description: 'Kunder kan se offerter och fakturor via säker länk. Ingen inloggning krävs.',
+  },
+  {
+    icon: Shield,
+    title: 'Multi-tenant säkerhet',
+    description: 'Komplett dataisolering. Row Level Security på alla tabeller.',
+  },
+  {
+    icon: Settings,
+    title: 'Fortnox & Visma',
+    description: 'Sömlös integration med era befintliga bokföringssystem.',
   },
   {
     icon: Smartphone,
-    title: 'AI-automation',
-    description: 'ROT-ansökningar på 2 minuter. AI läser fakturor automatiskt. Spara 10+ timmar per månad.',
+    title: 'PWA & Offline',
+    description: 'Installera som app. Full funktionalitet utan internet.',
+  },
+  {
+    icon: Bell,
+    title: 'Notifikationer',
+    description: 'Realtidsnotiser för viktiga händelser. Inget missas.',
+  },
+  {
+    icon: CreditCard,
+    title: 'Lönehantering',
+    description: 'Automatisk OB-beräkning. Exportera till PDF eller CSV.',
+  },
+  {
+    icon: Calendar,
+    title: 'Resursplanering',
+    description: 'Rätt person på rätt plats. Semester- och frånvarohantering.',
   },
 ];
 
@@ -38,15 +113,18 @@ export function EnhancedFeaturesSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section id="funktioner" className="py-16 md:py-24">
+    <section id="funktioner" className="py-16 md:py-24 bg-card border-y border-border">
       <div className="section-container">
-        <div ref={ref} className="mb-12">
+        <div ref={ref} className="text-center mb-12">
           <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            Våra mest omtyckta funktioner
+            Allt Bygglet har – och mer därtill
           </h2>
+          <p className={`mt-3 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
+            18+ funktioner designade för svenska byggföretag. Moderna. Snabba. AI-drivna.
+          </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
@@ -56,27 +134,35 @@ export function EnhancedFeaturesSection() {
   );
 }
 
-function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
+function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const Icon = feature.icon;
 
   return (
     <div
       ref={ref}
-      className={`group ${
-        isVisible ? `animate-fade-in-up stagger-${(index % 3) + 1}` : 'opacity-0'
+      className={`group relative p-5 rounded-xl bg-background border border-border hover:border-accent/40 hover:shadow-md transition-all duration-300 ${
+        isVisible ? `animate-fade-in-up` : 'opacity-0'
       }`}
+      style={{ animationDelay: `${(index % 8) * 0.05}s` }}
     >
+      {/* Badge */}
+      {feature.badge && (
+        <span className="absolute -top-2 right-3 px-2 py-0.5 text-xs font-medium rounded-full bg-accent text-accent-foreground">
+          {feature.badge}
+        </span>
+      )}
+
       {/* Icon */}
-      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-200 group-hover:scale-105">
-        <Icon className="h-6 w-6" />
+      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground">
+        <Icon className="h-5 w-5" />
       </div>
 
       {/* Content */}
-      <h3 className="mb-2 text-lg font-bold text-foreground">
+      <h3 className="mb-1.5 font-semibold text-foreground group-hover:text-accent transition-colors">
         {feature.title}
       </h3>
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="text-sm text-muted-foreground leading-relaxed">
         {feature.description}
       </p>
     </div>

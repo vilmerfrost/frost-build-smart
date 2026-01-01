@@ -72,7 +72,7 @@ function AnimatedCounter({
     : count.toFixed(value % 1 !== 0 ? 1 : 0);
 
   return (
-    <span className="text-3xl md:text-4xl font-bold text-foreground">
+    <span className="text-3xl md:text-4xl font-bold text-foreground group-hover:text-accent transition-colors">
       {displayValue}{suffix}
     </span>
   );
@@ -96,11 +96,11 @@ export function StatsSection() {
             return (
               <div
                 key={stat.label}
-                className={`text-center ${
+                className={`group text-center p-6 rounded-xl hover:bg-background hover:shadow-md transition-all duration-300 cursor-default ${
                   isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
                 }`}
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground">
                   <Icon className="h-6 w-6" />
                 </div>
                 <div className="space-y-1">

@@ -35,15 +35,15 @@ export function Testimonials() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="py-16 md:py-24 bg-card border-y border-border">
+    <section className="py-16 md:py-24">
       <div className="section-container">
-        <div ref={ref} className="mb-12">
+        <div ref={ref} className="text-center mb-12">
           <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Vad våra kunder säger
           </h2>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
           ))}
@@ -59,29 +59,29 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
   return (
     <div
       ref={ref}
-      className={`p-6 rounded-xl bg-background border border-border ${
+      className={`group p-6 rounded-xl bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 ${
         isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
       }`}
     >
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+          <Star key={i} className="h-4 w-4 fill-accent text-accent transition-transform group-hover:scale-110" style={{ transitionDelay: `${i * 50}ms` }} />
         ))}
       </div>
 
       {/* Quote */}
       <blockquote className="text-foreground mb-6 leading-relaxed">
-        "{testimonial.quote}"
+        &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">
+        <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold transition-transform group-hover:scale-105">
           {testimonial.avatar}
         </div>
         <div>
-          <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
+          <p className="font-semibold text-sm text-foreground group-hover:text-accent transition-colors">{testimonial.name}</p>
           <p className="text-xs text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
           <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
