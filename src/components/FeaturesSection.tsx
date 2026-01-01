@@ -4,51 +4,45 @@ import { Zap, FileText, Tag, Puzzle, Wifi, Sparkles } from 'lucide-react';
 const features = [
   {
     icon: Zap,
-    badge: 'Första i Sverige',
+    badge: 'AI-automation',
     title: 'ROT-ansökningar på 2 minuter',
-    description: 'AI genererar kompletta sammanfattningar för Skatteverket automatiskt. Spara 10+ timmar per månad.',
-    gradient: 'from-amber-500 to-orange-600',
-    iconBg: 'bg-amber-500/10 text-amber-500',
+    description: 'AI genererar kompletta sammanfattningar för Skatteverket automatiskt. Spara över 10 timmar per månad.',
+    iconBg: 'bg-accent/10 text-accent',
   },
   {
     icon: FileText,
     badge: '99% noggrannhet',
-    title: 'Läs fakturor automatiskt',
-    description: 'Dra & släpp faktura → AI extraherar leverantör, belopp, datum, radposter på 10 sekunder.',
-    gradient: 'from-blue-500 to-cyan-500',
-    iconBg: 'bg-blue-500/10 text-blue-500',
+    title: 'Automatisk fakturaläsning',
+    description: 'Dra och släpp faktura – AI extraherar leverantör, belopp, datum och radposter på sekunder.',
+    iconBg: 'bg-accent/10 text-accent',
   },
   {
     icon: Tag,
-    badge: 'Spara 30,000 kr/år',
+    badge: 'Transparent prissättning',
     title: '499 kr/månad. Allt inkluderat.',
-    description: 'Ingen setup-avgift. Ingen träningsavgift. Obegränsat antal användare. Vs Bygglet: 2,000-4,000 kr/månad.',
-    gradient: 'from-emerald-500 to-green-600',
-    iconBg: 'bg-emerald-500/10 text-emerald-500',
+    description: 'Ingen setup-avgift. Obegränsat antal användare. Jämfört med Bygglet: 2 000-4 000 kr/månad.',
+    iconBg: 'bg-success/10 text-success',
   },
   {
     icon: Puzzle,
-    badge: '0 kr extra kostnad',
-    title: 'Gemini + Groq AI-stack',
-    description: 'Powered by Google Gemini 2.0 Flash och Groq Llama 3.3. 15,900 gratis förfrågningar/dag.',
-    gradient: 'from-violet-500 to-purple-600',
-    iconBg: 'bg-violet-500/10 text-violet-500',
+    badge: 'Integrationer',
+    title: 'Anslut till era befintliga system',
+    description: 'Sömlös integration med Fortnox och Visma. Exportera löner och fakturor direkt.',
+    iconBg: 'bg-accent/10 text-accent',
   },
   {
     icon: Wifi,
-    badge: '100% uptime',
-    title: 'Fungerar överallt',
-    description: 'Full funktionalitet utan internet. Synkas automatiskt när du får uppkoppling.',
-    gradient: 'from-cyan-500 to-blue-600',
-    iconBg: 'bg-cyan-500/10 text-cyan-500',
+    badge: 'Offlinestöd',
+    title: 'Fungerar på byggarbetsplatsen',
+    description: 'Full funktionalitet utan internet. Data synkas automatiskt när uppkoppling finns.',
+    iconBg: 'bg-accent/10 text-accent',
   },
   {
     icon: Sparkles,
-    badge: '20+ uppdateringar/år',
-    title: 'Byggt för 2025, inte 2010',
-    description: 'Dark mode, PWA, snabba laddningstider. Uppdateras varje månad, inte varje år.',
-    gradient: 'from-pink-500 to-rose-600',
-    iconBg: 'bg-pink-500/10 text-pink-500',
+    badge: 'Modern plattform',
+    title: 'Byggd för dagens behov',
+    description: 'Responsiv design, snabba laddningstider och regelbundna uppdateringar baserade på kundfeedback.',
+    iconBg: 'bg-accent/10 text-accent',
   },
 ];
 
@@ -56,22 +50,21 @@ export function FeaturesSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section id="funktioner" className="relative py-20 md:py-32">
+    <section id="funktioner" className="relative py-20 md:py-28 bg-muted/30">
       <div className="section-container">
         <div ref={ref} className="text-center">
           <span className={`badge-frost mb-4 inline-block ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Funktioner
           </span>
-          <h2 className={`text-3xl font-bold text-foreground md:text-4xl lg:text-5xl ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
-            AI-drivna funktioner som{' '}
-            <span className="text-gradient">ingen konkurrent har</span>
+          <h2 className={`text-3xl font-bold text-foreground md:text-4xl ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
+            Effektiva verktyg för byggbranschen
           </h2>
           <p className={`mx-auto mt-4 max-w-2xl text-lg text-muted-foreground ${isVisible ? 'animate-fade-in-up stagger-2' : 'opacity-0'}`}>
-            Byggda från grunden för svenska byggföretag. Moderna. Snabba. Kostnadseffektiva.
+            Utvecklade tillsammans med svenska byggföretag för att lösa verkliga utmaningar.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
@@ -88,32 +81,29 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
   return (
     <div
       ref={ref}
-      className={`card-hover group relative rounded-2xl border border-border/50 bg-card p-6 md:p-8 ${
+      className={`group relative rounded-lg border border-border bg-card p-6 transition-shadow duration-200 hover:shadow-md ${
         isVisible ? `animate-fade-in-up stagger-${(index % 3) + 1}` : 'opacity-0'
       }`}
     >
       {/* Badge */}
-      <div className="absolute -top-3 right-6">
-        <span className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+      <div className="mb-4">
+        <span className="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
           {feature.badge}
         </span>
       </div>
 
       {/* Icon */}
-      <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl ${feature.iconBg} transition-transform duration-300 group-hover:scale-110`}>
-        <Icon className="h-7 w-7" />
+      <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg ${feature.iconBg}`}>
+        <Icon className="h-6 w-6" />
       </div>
 
       {/* Content */}
-      <h3 className="mb-3 text-xl font-bold text-foreground">
+      <h3 className="mb-2 text-lg font-semibold text-foreground">
         {feature.title}
       </h3>
-      <p className="text-muted-foreground">
+      <p className="text-sm text-muted-foreground leading-relaxed">
         {feature.description}
       </p>
-
-      {/* Hover gradient */}
-      <div className={`absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-10`} />
     </div>
   );
 }

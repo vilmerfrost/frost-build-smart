@@ -35,13 +35,13 @@ export function Testimonials() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="py-20 md:py-32 bg-muted/30">
+    <section className="py-16 md:py-24">
       <div className="section-container">
-        <div ref={ref} className="text-center mb-12">
+        <div ref={ref} className="text-center mb-10">
           <span className={`badge-frost mb-4 inline-block ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Kundrecensioner
           </span>
-          <h2 className={`text-3xl font-bold text-foreground md:text-4xl lg:text-5xl ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
+          <h2 className={`text-2xl font-bold text-foreground md:text-3xl ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
             Vad våra kunder säger
           </h2>
         </div>
@@ -62,31 +62,31 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
   return (
     <div
       ref={ref}
-      className={`group relative p-6 md:p-8 rounded-2xl border border-border/50 bg-card hover:border-accent/30 transition-all duration-300 hover:shadow-lg ${
+      className={`p-6 rounded-lg border border-border bg-card ${
         isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
       }`}
     >
       {/* Stars */}
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-0.5 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
+          <Star key={i} className="h-4 w-4 fill-amber-500 text-amber-500" />
         ))}
       </div>
 
       {/* Quote */}
-      <blockquote className="text-foreground mb-6 leading-relaxed">
+      <blockquote className="text-foreground text-sm mb-5 leading-relaxed">
         "{testimonial.quote}"
       </blockquote>
 
       {/* Author */}
-      <div className="flex items-center gap-4">
-        <div className="h-12 w-12 rounded-full bg-gradient-frost flex items-center justify-center text-primary-foreground font-bold">
+      <div className="flex items-center gap-3">
+        <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">
           {testimonial.avatar}
         </div>
-        <div className="flex-1">
-          <p className="font-semibold text-foreground">{testimonial.name}</p>
-          <p className="text-sm text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
-          <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
+        <div>
+          <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
+          <p className="text-xs text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
+          <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <MapPin className="h-3 w-3" />
               {testimonial.location}
@@ -98,9 +98,6 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
           </div>
         </div>
       </div>
-
-      {/* Accent border on hover */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-accent/0 group-hover:border-accent/20 transition-colors pointer-events-none" />
     </div>
   );
 }
