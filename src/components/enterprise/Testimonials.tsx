@@ -3,7 +3,7 @@ import { Star, MapPin, Users } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: 'Vi sparade 15 timmar första månaden bara på ROT-automation. Frost Bygg är exakt vad svenska byggföretag behöver - modern, prisvärd och otroligt enkel att använda.',
+    quote: 'Vi sparade 15 timmar första månaden bara på ROT-automation. Frost Bygg är exakt vad svenska byggföretag behöver.',
     name: 'Erik Andersson',
     title: 'VD',
     company: 'Anderssons Bygg AB',
@@ -12,7 +12,7 @@ const testimonials = [
     avatar: 'EA',
   },
   {
-    quote: 'Vi bytte från Bygglet och sparade över 25,000 kr första året. AI-funktionerna är fantastiska - faktura-läsningen ensam sparar oss timmar varje vecka.',
+    quote: 'Vi bytte från Bygglet och sparade över 25,000 kr första året. AI-funktionerna är fantastiska.',
     name: 'Maria Lindström',
     title: 'Ekonomichef',
     company: 'Nordisk Entreprenad',
@@ -21,7 +21,7 @@ const testimonials = [
     avatar: 'ML',
   },
   {
-    quote: 'Äntligen ett system som fungerar offline på byggplatsen. Mina snickare älskar det. Inga fler problem med dålig uppkoppling.',
+    quote: 'Äntligen ett system som fungerar offline på byggplatsen. Mina snickare älskar det.',
     name: 'Jonas Bergman',
     title: 'Projektledare',
     company: 'Moderna Hus Group',
@@ -35,13 +35,10 @@ export function Testimonials() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-card border-y border-border">
       <div className="section-container">
-        <div ref={ref} className="text-center mb-10">
-          <span className={`badge-frost mb-4 inline-block ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            Kundrecensioner
-          </span>
-          <h2 className={`text-2xl font-bold text-foreground md:text-3xl ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
+        <div ref={ref} className="mb-12">
+          <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Vad våra kunder säger
           </h2>
         </div>
@@ -62,19 +59,19 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
   return (
     <div
       ref={ref}
-      className={`p-6 rounded-lg border border-border bg-card ${
+      className={`p-6 rounded-xl bg-background border border-border ${
         isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
       }`}
     >
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-amber-500 text-amber-500" />
+          <Star key={i} className="h-4 w-4 fill-accent text-accent" />
         ))}
       </div>
 
       {/* Quote */}
-      <blockquote className="text-foreground text-sm mb-5 leading-relaxed">
+      <blockquote className="text-foreground mb-6 leading-relaxed">
         "{testimonial.quote}"
       </blockquote>
 
@@ -86,7 +83,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
         <div>
           <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
           <p className="text-xs text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
-          <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
+          <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <MapPin className="h-3 w-3" />
               {testimonial.location}

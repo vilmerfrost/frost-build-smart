@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Briefcase, Zap, FileText, PiggyBank } from 'lucide-react';
+import { Briefcase, Clock, FileText, PiggyBank } from 'lucide-react';
 
 const stats = [
   {
@@ -11,7 +11,7 @@ const stats = [
     sublabel: 'Använder Frost Bygg',
   },
   {
-    icon: Zap,
+    icon: Clock,
     value: 15847,
     suffix: '',
     label: 'Timmar sparade',
@@ -28,7 +28,7 @@ const stats = [
     icon: PiggyBank,
     value: 4.2,
     suffix: 'M kr',
-    label: 'Besparingar totalt',
+    label: 'Besparingar',
     sublabel: 'För våra kunder',
   },
 ];
@@ -48,8 +48,8 @@ function AnimatedCounter({
   useEffect(() => {
     if (isVisible && !hasAnimated.current) {
       hasAnimated.current = true;
-      const duration = 2000;
-      const steps = 60;
+      const duration = 1500;
+      const steps = 50;
       const increment = value / steps;
       let current = 0;
       
@@ -72,7 +72,7 @@ function AnimatedCounter({
     : count.toFixed(value % 1 !== 0 ? 1 : 0);
 
   return (
-    <span className="text-4xl md:text-5xl font-bold text-foreground">
+    <span className="text-3xl md:text-4xl font-bold text-foreground">
       {displayValue}{suffix}
     </span>
   );
@@ -82,30 +82,30 @@ export function StatsSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="relative py-16 md:py-20 border-y border-border bg-card">
+    <section className="py-16 md:py-20 bg-card border-y border-border">
       <div className="section-container">
-        <div ref={ref} className="text-center mb-10">
-          <h2 className={`text-xl md:text-2xl font-semibold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div ref={ref} className="text-center mb-12">
+          <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Betrodd av svenska byggföretag
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className={`text-center p-5 rounded-lg bg-muted/50 border border-border ${
+                className={`text-center ${
                   isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
                 }`}
               >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent mb-3">
-                  <Icon className="h-5 w-5" />
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
+                  <Icon className="h-6 w-6" />
                 </div>
-                <div className="space-y-0.5">
+                <div className="space-y-1">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} isVisible={isVisible} />
-                  <p className="font-medium text-sm text-foreground">{stat.label}</p>
+                  <p className="font-semibold text-sm text-foreground">{stat.label}</p>
                   <p className="text-xs text-muted-foreground">{stat.sublabel}</p>
                 </div>
               </div>

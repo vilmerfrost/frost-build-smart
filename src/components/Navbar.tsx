@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Moon, Snowflake } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
 import { useEasterEggTriggers } from '@/components/EasterEggs';
 
@@ -37,20 +37,23 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'glass border-b border-border/50 shadow-sm'
+          ? 'glass border-b border-border shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <nav className="section-container">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2" onClick={triggerLogoClick} onMouseEnter={triggerLogoHover}>
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <Snowflake className="h-4 w-4" />
+          <a 
+            href="/" 
+            className="flex items-center gap-2 font-bold text-xl text-foreground" 
+            onClick={triggerLogoClick} 
+            onMouseEnter={triggerLogoHover}
+          >
+            <div className="h-8 w-8 rounded-lg bg-accent flex items-center justify-center text-accent-foreground font-bold text-sm">
+              FB
             </div>
-            <span className="text-lg font-semibold text-foreground">
-              Frost Bygg
-            </span>
+            <span className="hidden sm:inline">Frost Bygg</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -60,7 +63,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="link-underline px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>
@@ -68,7 +71,7 @@ export function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="link-underline px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </a>
@@ -80,17 +83,20 @@ export function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <button
               onClick={handleThemeToggleClick}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               aria-label="Växla tema"
             >
               {theme === 'light' ? (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-4 w-4" />
               ) : (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-4 w-4" />
               )}
             </button>
+            <Button variant="ghost" size="sm" className="text-muted-foreground">
+              Logga in
+            </Button>
             <Button variant="frost" size="sm">
-              Starta gratis
+              Boka demo
             </Button>
           </div>
 
@@ -98,18 +104,18 @@ export function Navbar() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
               aria-label="Växla tema"
             >
               {theme === 'light' ? (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-4 w-4" />
               ) : (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-4 w-4" />
               )}
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted"
               aria-label="Öppna meny"
             >
               {isMobileMenuOpen ? (
@@ -127,7 +133,7 @@ export function Navbar() {
             isMobileMenuOpen ? 'max-h-96 pb-6' : 'max-h-0'
           }`}
         >
-          <div className="flex flex-col gap-2 pt-4">
+          <div className="flex flex-col gap-1 pt-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -138,9 +144,14 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button variant="frost" className="mt-2">
-              Starta gratis
-            </Button>
+            <div className="mt-4 flex flex-col gap-2">
+              <Button variant="ghost" className="justify-start text-muted-foreground">
+                Logga in
+              </Button>
+              <Button variant="frost">
+                Boka demo
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
