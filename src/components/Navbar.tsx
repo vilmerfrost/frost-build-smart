@@ -44,11 +44,11 @@ export function Navbar() {
       <nav className="section-container">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group" onClick={triggerLogoClick} onMouseEnter={triggerLogoHover}>
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-frost text-primary-foreground transition-transform duration-300 group-hover:scale-110">
-              <Snowflake className="h-5 w-5" />
+          <a href="/" className="flex items-center gap-2" onClick={triggerLogoClick} onMouseEnter={triggerLogoHover}>
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <Snowflake className="h-4 w-4" />
             </div>
-            <span className="text-xl font-bold text-foreground">
+            <span className="text-lg font-semibold text-foreground">
               Frost Bygg
             </span>
           </a>

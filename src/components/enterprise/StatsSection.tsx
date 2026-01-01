@@ -82,10 +82,10 @@ export function StatsSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="relative py-16 md:py-24 bg-muted/30">
+    <section className="relative py-16 md:py-20 border-y border-border bg-card">
       <div className="section-container">
-        <div ref={ref} className="text-center mb-12">
-          <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div ref={ref} className="text-center mb-10">
+          <h2 className={`text-xl md:text-2xl font-semibold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Betrodd av svenska byggföretag
           </h2>
         </div>
@@ -96,17 +96,17 @@ export function StatsSection() {
             return (
               <div
                 key={stat.label}
-                className={`text-center p-6 rounded-2xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${
+                className={`text-center p-5 rounded-lg bg-muted/50 border border-border ${
                   isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'
                 }`}
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
-                  <Icon className="h-6 w-6" />
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent mb-3">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} isVisible={isVisible} />
-                  <p className="font-semibold text-foreground">{stat.label}</p>
-                  <p className="text-sm text-muted-foreground">{stat.sublabel}</p>
+                  <p className="font-medium text-sm text-foreground">{stat.label}</p>
+                  <p className="text-xs text-muted-foreground">{stat.sublabel}</p>
                 </div>
               </div>
             );
