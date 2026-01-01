@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Moon, Snowflake } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
+import { useEasterEggTriggers } from '@/components/EasterEggs';
 
 const navLinks = [
   { href: '#funktioner', label: 'Funktioner' },
   { href: '#priser', label: 'Priser' },
   { href: '#vs-bygglet', label: 'Vs Bygglet' },
   { href: '#om-oss', label: 'Om oss' },
-  { href: '#kontakt', label: 'Kontakt' },
+  { href: '/changelog', label: 'Changelog', isRoute: true },
+  { href: '/blog', label: 'Blogg', isRoute: true },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { triggerLogoClick, triggerThemeToggle, triggerLogoHover } = useEasterEggTriggers();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,11 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleThemeToggleClick = () => {
+    toggleTheme();
+    triggerThemeToggle();
+  };
 
   return (
     <header
@@ -35,7 +44,7 @@ export function Navbar() {
       <nav className="section-container">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group" onClick={triggerLogoClick} onMouseEnter={triggerLogoHover}>
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-frost text-primary-foreground transition-transform duration-300 group-hover:scale-110">
               <Snowflake className="h-5 w-5" />
             </div>
@@ -47,20 +56,30 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="link-underline px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="link-underline px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="link-underline px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden items-center gap-3 md:flex">
             <button
-              onClick={toggleTheme}
+              onClick={handleThemeToggleClick}
               className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               aria-label="Växla tema"
             >
