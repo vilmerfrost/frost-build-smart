@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { 
   Calendar, FileText, Clock, Receipt, PieChart, Zap,
   MapPin, Users, Bell, Shield, Smartphone, BarChart3,
-  FileCheck, Wrench, CalendarDays, Globe, CreditCard, Settings
+  FileCheck, Wrench, CalendarDays, Globe, CreditCard, Settings,
+  ChevronDown, ChevronUp
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Feature {
   icon: LucideIcon;
@@ -109,8 +112,14 @@ const features: Feature[] = [
   },
 ];
 
+const INITIAL_VISIBLE_COUNT = 8;
+
 export function EnhancedFeaturesSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleFeatures = showAll ? features : features.slice(0, INITIAL_VISIBLE_COUNT);
+  const hiddenCount = features.length - INITIAL_VISIBLE_COUNT;
 
   return (
     <section id="funktioner" className="py-16 md:py-24 bg-card border-y border-border">
@@ -125,10 +134,34 @@ export function EnhancedFeaturesSection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {features.map((feature, index) => (
+          {visibleFeatures.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
         </div>
+
+        {/* Show More / Show Less Button */}
+        {hiddenCount > 0 && (
+          <div className="mt-8 text-center">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setShowAll(!showAll)}
+              className="group gap-2 px-8"
+            >
+              {showAll ? (
+                <>
+                  Visa färre
+                  <ChevronUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                </>
+              ) : (
+                <>
+                  Visa alla {features.length} funktioner
+                  <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
