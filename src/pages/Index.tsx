@@ -1,42 +1,53 @@
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { TryROTDemo } from '@/components/TryROTDemo';
+import { StatsSection } from '@/components/enterprise/StatsSection';
+import { CustomerLogos } from '@/components/enterprise/CustomerLogos';
 import { FeaturedIn } from '@/components/social-proof/FeaturedIn';
-import { FeaturesSection } from '@/components/FeaturesSection';
+import { EnhancedFeaturesSection } from '@/components/enterprise/EnhancedFeaturesSection';
 import { SavingsCalculator } from '@/components/SavingsCalculator';
 import { InteractiveProductTour } from '@/components/InteractiveProductTour';
 import { PricingSection } from '@/components/PricingSection';
+import { PricingTable } from '@/components/enterprise/PricingTable';
 import { ComparisonSlider } from '@/components/ComparisonSlider';
-import { ComparisonSection } from '@/components/ComparisonSection';
-import { CaseStudiesSection } from '@/components/CaseStudiesSection';
+import { Testimonials } from '@/components/enterprise/Testimonials';
+import { SecuritySection } from '@/components/enterprise/SecuritySection';
 import { IntegrationsSection } from '@/components/IntegrationsSection';
+import { FAQSection } from '@/components/enterprise/FAQSection';
 import { AboutSection } from '@/components/AboutSection';
 import { ContactSection } from '@/components/ContactSection';
-import { Footer } from '@/components/Footer';
+import { EnhancedFooter } from '@/components/enterprise/EnhancedFooter';
 import { RecentSignups } from '@/components/social-proof/RecentSignups';
+import { EasterEggsProvider } from '@/components/EasterEggs';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <HeroSection />
-        <TryROTDemo />
-        <FeaturedIn />
-        <FeaturesSection />
-        <SavingsCalculator />
-        <InteractiveProductTour />
-        <PricingSection />
-        <ComparisonSlider />
-        <ComparisonSection />
-        <CaseStudiesSection />
-        <IntegrationsSection />
-        <AboutSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <RecentSignups />
-    </div>
+    <EasterEggsProvider>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <TryROTDemo />
+          <StatsSection />
+          <CustomerLogos />
+          <FeaturedIn />
+          <EnhancedFeaturesSection />
+          <SavingsCalculator />
+          <InteractiveProductTour />
+          <PricingSection />
+          <PricingTable />
+          <ComparisonSlider />
+          <Testimonials />
+          <SecuritySection />
+          <IntegrationsSection />
+          <FAQSection />
+          <AboutSection />
+          <ContactSection />
+        </main>
+        <EnhancedFooter />
+        <RecentSignups />
+      </div>
+    </EasterEggsProvider>
   );
 };
 
