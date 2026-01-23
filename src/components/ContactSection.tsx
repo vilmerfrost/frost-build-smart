@@ -51,9 +51,11 @@ export function ContactSection() {
               ))}
             </ul>
 
-            <Button variant="hero" size="lg" className="mt-6 w-full group">
-              Starta gratis
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            <Button variant="hero" size="lg" className="mt-6 w-full group" asChild>
+              <a href="https://frost-solutions.vercel.app/signup">
+                Starta gratis
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
             </Button>
           </div>
 

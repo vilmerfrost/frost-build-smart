@@ -36,12 +36,14 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="animate-fade-in-up stagger-3 mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-            <Button variant="hero" size="xl" className="group">
-              Skaffa Frost Bygg
-              <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+            <Button variant="hero" size="xl" className="group" asChild>
+              <a href="https://frost-solutions.vercel.app/signup">
+                Skaffa Frost Bygg
+                <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+              </a>
             </Button>
-            <Button variant="hero-secondary" size="xl">
-              Boka demo
+            <Button variant="hero-secondary" size="xl" asChild>
+              <a href="https://frost-solutions.vercel.app/signup">Boka demo</a>
             </Button>
           </div>
 
