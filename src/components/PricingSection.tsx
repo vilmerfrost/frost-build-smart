@@ -66,9 +66,11 @@ export function PricingSection() {
               </ul>
 
               {/* CTA */}
-              <Button variant="hero" size="lg" className="w-full group">
-                Beställ Frost Bygg
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <Button variant="hero" size="lg" className="w-full group" asChild>
+                <a href="https://frost-solutions.vercel.app/signup">
+                  Beställ Frost Bygg
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
               </Button>
 
               <p className="mt-4 text-center text-xs text-muted-foreground">

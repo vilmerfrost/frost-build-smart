@@ -92,11 +92,11 @@ export function Navbar() {
                 <Sun className="h-4 w-4" />
               )}
             </button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Logga in
+            <Button variant="ghost" size="sm" className="text-muted-foreground" asChild>
+              <a href="https://frost-solutions.vercel.app/login">Logga in</a>
             </Button>
-            <Button variant="frost" size="sm">
-              Boka demo
+            <Button variant="frost" size="sm" asChild>
+              <a href="https://frost-solutions.vercel.app/signup">Kom igång</a>
             </Button>
           </div>
 
@@ -145,11 +145,11 @@ export function Navbar() {
               </a>
             ))}
             <div className="mt-4 flex flex-col gap-2">
-              <Button variant="ghost" className="justify-start text-muted-foreground">
-                Logga in
+              <Button variant="ghost" className="justify-start text-muted-foreground" asChild>
+                <a href="https://frost-solutions.vercel.app/login">Logga in</a>
               </Button>
-              <Button variant="frost">
-                Boka demo
+              <Button variant="frost" asChild>
+                <a href="https://frost-solutions.vercel.app/signup">Kom igång</a>
               </Button>
             </div>
           </div>
