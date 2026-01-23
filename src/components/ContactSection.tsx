@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ArrowRight, Send, Calendar, Check } from 'lucide-react';
+import { ArrowRight, Send, Calendar, Check, Sparkles } from 'lucide-react';
+import { ExternalLink } from '@/components/ExternalLink';
+
+const PRODUCTION_URL = 'https://frost-solutions.vercel.app';
 
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
@@ -9,8 +12,6 @@ export function ContactSection() {
     name: '',
     company: '',
     email: '',
-    phone: '',
-    message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -20,92 +21,103 @@ export function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="py-16 md:py-24">
+    <section id="kontakt" className="py-20 md:py-28 gradient-bg">
       <div className="section-container">
-        <div ref={ref} className="text-center mb-10">
-          <h2 className={`text-2xl md:text-3xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            Redo att testa?
+        <div ref={ref} className="text-center mb-12">
+          <span className={`badge-frost mb-4 inline-block ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Kom igång
+          </span>
+          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
+            Redo att effektivisera ditt <span className="text-gradient">byggföretag?</span>
           </h2>
-          <p className={`mt-3 text-muted-foreground ${isVisible ? 'animate-fade-in-up stagger-1' : 'opacity-0'}`}>
-            Kom igång på 2 minuter eller boka en personlig demo
+          <p className={`mt-4 text-lg text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-in-up stagger-2' : 'opacity-0'}`}>
+            Kom igång på 2 minuter eller boka en personlig demo med Vilmer
           </p>
         </div>
 
-        <div className={`grid gap-6 md:grid-cols-2 max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up stagger-2' : 'opacity-0'}`}>
+        <div className={`grid gap-8 md:grid-cols-2 max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up stagger-3' : 'opacity-0'}`}>
           {/* Self-service option */}
-          <div className="rounded-xl border border-border bg-card p-6 md:p-8">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <ArrowRight className="h-6 w-6" />
+          <div className="card-glow p-8 relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent/80 text-white shadow-lg">
+                <Sparkles className="h-7 w-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground">Starta direkt</h3>
+              <p className="mt-2 text-muted-foreground">
+                Inget betalkort behövs. Första månaden gratis.
+              </p>
+
+              <ul className="mt-6 space-y-3">
+                {['30 dagars gratis provperiod', 'Ingen bindningstid', 'Full tillgång till alla funktioner'].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-foreground">
+                    <div className="h-5 w-5 rounded-full bg-success/10 flex items-center justify-center">
+                      <Check className="h-3 w-3 text-success" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Button variant="hero" size="lg" className="mt-8 w-full group/btn shadow-lg hover:shadow-xl transition-all" asChild>
+                <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+                  Starta gratis
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                </ExternalLink>
+              </Button>
             </div>
-            <h3 className="text-xl font-bold text-foreground">Starta direkt</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Inget betalkort behövs. Första månaden gratis.
-            </p>
-
-            <ul className="mt-5 space-y-2">
-              {['Gratis första månaden', 'Ingen bindningstid', 'Alla funktioner'].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-foreground">
-                  <Check className="h-4 w-4 text-success" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <Button variant="hero" size="lg" className="mt-6 w-full group" asChild>
-              <a href="https://frost-solutions.vercel.app/signup">
-                Starta gratis
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </Button>
           </div>
 
           {/* Book demo option */}
-          <div className="rounded-xl border-2 border-accent/30 bg-card p-6 md:p-8">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <Calendar className="h-6 w-6" />
+          <div className="feature-card p-8 border-2 border-primary/20">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <Calendar className="h-7 w-7" />
             </div>
-            <h3 className="text-xl font-bold text-foreground">Boka demo</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="text-2xl font-bold text-foreground">Boka demo</h3>
+            <p className="mt-2 text-muted-foreground">
               15 minuter med Vilmer. Vi svarar inom 24h.
             </p>
 
             {isSubmitted ? (
-              <div className="mt-6 rounded-lg bg-success/10 p-5 text-center">
-                <Check className="h-8 w-8 text-success mx-auto mb-2" />
-                <p className="font-semibold text-foreground">Tack!</p>
-                <p className="text-sm text-muted-foreground">Vi hör av oss inom 24h.</p>
+              <div className="mt-6 rounded-2xl bg-success/10 p-6 text-center border border-success/20">
+                <div className="h-12 w-12 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-3">
+                  <Check className="h-6 w-6 text-success" />
+                </div>
+                <p className="font-bold text-lg text-foreground">Tack för din förfrågan!</p>
+                <p className="text-muted-foreground mt-1">Vi hör av oss inom 24 timmar.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-5 space-y-3">
-                <div className="grid gap-3 sm:grid-cols-2">
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     type="text"
-                    placeholder="Namn"
+                    placeholder="Ditt namn"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   />
                   <input
                     type="text"
-                    placeholder="Företag"
+                    placeholder="Företagsnamn"
                     required
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   />
                 </div>
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder="din@email.se"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                 />
-                <Button variant="frost" size="default" type="submit" className="w-full">
+                <Button variant="default" size="lg" type="submit" className="w-full">
                   <Send className="mr-2 h-4 w-4" />
-                  Skicka
+                  Skicka förfrågan
                 </Button>
               </form>
             )}
