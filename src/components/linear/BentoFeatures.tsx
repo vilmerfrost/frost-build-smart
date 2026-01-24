@@ -91,7 +91,7 @@ function InvoiceScanCard() {
           <Scan className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-white">AI-Fakturatolkning</h3>
+          <h3 className="text-xl font-extrabold text-white">AI-Fakturatolkning</h3>
           <p className="text-sm text-white/50">Fota kvittot. AI sköter resten.</p>
         </div>
       </div>
@@ -164,11 +164,11 @@ function GPSCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-blue-500/20">
-          <MapPin className="h-5 w-5 text-blue-400" />
+        <div className="p-2 rounded-lg bg-primary/20">
+          <MapPin className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-white">GPS-Incheckning</h3>
+          <h3 className="text-lg font-extrabold text-white">GPS-Incheckning</h3>
           <p className="text-sm text-white/50">Automatisk stämpling</p>
         </div>
       </div>
@@ -239,11 +239,11 @@ function ATACard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-amber-500/20">
-          <AlertTriangle className="h-5 w-5 text-amber-400" />
+        <div className="p-2 rounded-lg bg-primary/20">
+          <AlertTriangle className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-white">Smart ÄTA-hantering</h3>
+          <h3 className="text-lg font-extrabold text-white">Smart ÄTA-hantering</h3>
           <p className="text-sm text-white/50">Problem → Lösning</p>
         </div>
       </div>
@@ -305,11 +305,11 @@ function ExportCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-purple-500/20">
-          <Download className="h-5 w-5 text-purple-400" />
+        <div className="p-2 rounded-lg bg-primary/20">
+          <Download className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-white">Löneunderlag på 1 klick</h3>
+          <h3 className="text-xl font-extrabold text-white">Löneunderlag på 1 klick</h3>
           <p className="text-sm text-white/50">Exportera allt till lönesystemet direkt</p>
         </div>
       </div>

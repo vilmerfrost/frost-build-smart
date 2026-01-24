@@ -75,7 +75,7 @@ export function Navbar() {
             </a>
             <a
               href={`${PRODUCTION_URL}/signup`}
-              className="btn-glow text-sm px-4 py-2"
+              className="text-sm px-4 py-2 bg-white text-black font-semibold rounded-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
             >
               Starta gratis
             </a>
@@ -130,7 +130,7 @@ export function Navbar() {
                   </a>
                   <a
                     href={`${PRODUCTION_URL}/signup`}
-                    className="btn-glow text-center"
+                    className="text-center bg-white text-black font-semibold rounded-lg px-4 py-2 transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   >
                     Starta gratis
                   </a>

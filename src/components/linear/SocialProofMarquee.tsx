@@ -40,9 +40,9 @@ export function SocialProofMarquee() {
           {[...companies, ...companies].map((company, i) => (
             <div
               key={`${company}-${i}`}
-              className="flex-shrink-0 px-8 py-3 rounded-lg bg-white/[0.02] border border-white/[0.05]"
+              className="flex-shrink-0 px-8 py-3 rounded-lg bg-white/[0.02] border border-white/[0.05] transition-all duration-300 hover:bg-white/[0.05] group"
             >
-              <span className="text-white/30 font-medium whitespace-nowrap">
+              <span className="font-medium whitespace-nowrap grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:text-primary text-white/60">
                 {company}
               </span>
             </div>
