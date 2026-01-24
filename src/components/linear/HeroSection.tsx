@@ -91,11 +91,11 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="relative mt-20"
           >
-            {/* Glow behind phone */}
+            {/* Warm orange glow behind phone */}
             <div 
-              className="absolute inset-0 blur-3xl"
+              className="absolute inset-0 -inset-x-20 -inset-y-10 blur-3xl opacity-20"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(22 100% 55% / 0.3) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse at center, hsl(25 100% 60%) 0%, hsl(22 100% 55% / 0.5) 40%, transparent 70%)',
               }}
             />
             
