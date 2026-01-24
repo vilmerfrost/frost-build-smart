@@ -3,7 +3,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Check, ArrowRight, Zap, Receipt, Sparkles } from 'lucide-react';
 import { ExternalLink } from '@/components/ExternalLink';
 
-const PRODUCTION_URL = 'https://frost-solutions.vercel.app';
+const PRODUCTION_URL = 'https://frostsolutions.se';
 
 const includedFeatures = [
   'Obegränsat antal användare',

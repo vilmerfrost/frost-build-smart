@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Play, Sparkles } from 'lucide-react';
 import { ExternalLink } from '@/components/ExternalLink';
 
-const PRODUCTION_URL = 'https://frost-solutions.vercel.app';
+const PRODUCTION_URL = 'https://frostsolutions.se';
 
 export function HeroSection() {
   const features = ['Resursplanering', 'Tidrapporter', 'Offerter', 'Fakturor', 'ROT/RUT'];

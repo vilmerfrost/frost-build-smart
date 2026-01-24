@@ -4,7 +4,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowRight, Send, Calendar, Check, Sparkles } from 'lucide-react';
 import { ExternalLink } from '@/components/ExternalLink';
 
-const PRODUCTION_URL = 'https://frost-solutions.vercel.app';
+const PRODUCTION_URL = 'https://frostsolutions.se';
 
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();

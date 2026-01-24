@@ -6,7 +6,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { useEasterEggTriggers } from '@/components/EasterEggs';
 import { ExternalLink } from '@/components/ExternalLink';
 
-const PRODUCTION_URL = 'https://frost-solutions.vercel.app';
+const PRODUCTION_URL = 'https://frostsolutions.se';
 
 const navLinks = [
   { href: '#funktioner', label: 'Funktioner' },
