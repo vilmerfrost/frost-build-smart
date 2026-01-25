@@ -39,10 +39,10 @@ export function ComparisonSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             Före och efter <span className="text-primary">Frost</span>
           </h2>
-          <p className="text-lg text-white/40 max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Se skillnaden med dina egna ögon
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ export function ComparisonSection() {
                 <Frown className="h-6 w-6 text-red-400" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">Gamla sättet</h3>
+                <h3 className="text-2xl font-bold text-foreground">Gamla sättet</h3>
                 <p className="text-sm text-red-400/70">Tidskrävande och felbenäget</p>
               </div>
             </div>
@@ -81,8 +81,8 @@ export function ComparisonSection() {
                     <item.old.icon className="h-5 w-5 text-red-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold text-white">{item.old.text}</p>
-                    <p className="text-sm text-white/40">{item.old.subtext}</p>
+                    <p className="font-semibold text-foreground">{item.old.text}</p>
+                    <p className="text-sm text-muted-foreground">{item.old.subtext}</p>
                   </div>
                   <XCircle className="h-5 w-5 text-red-400/60" />
                 </motion.div>
@@ -126,7 +126,7 @@ export function ComparisonSection() {
                 <Smile className="h-6 w-6 text-success" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">Frost-sättet</h3>
+                <h3 className="text-2xl font-bold text-foreground">Frost-sättet</h3>
                 <p className="text-sm text-success/70">Snabbt och automatiskt</p>
               </div>
             </div>
@@ -145,8 +145,8 @@ export function ComparisonSection() {
                     <item.new.icon className="h-5 w-5 text-success" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold text-white">{item.new.text}</p>
-                    <p className="text-sm text-white/40">{item.new.subtext}</p>
+                    <p className="font-semibold text-foreground">{item.new.text}</p>
+                    <p className="text-sm text-muted-foreground">{item.new.subtext}</p>
                   </div>
                   <CheckCircle className="h-5 w-5 text-success/60" />
                 </motion.div>

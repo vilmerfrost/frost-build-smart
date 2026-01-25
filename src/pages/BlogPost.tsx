@@ -17,7 +17,7 @@ const blogContent: Record<string, {
     excerpt: 'Manuell ROT-hantering är en tidstjuv. Lär dig hur AI kan automatisera processen.',
     category: 'Product',
     readTime: '5 min',
-    date: '15 jan 2025',
+    date: '15 jan 2026',
     content: `
 ## Problemet med manuell ROT-hantering
 
@@ -65,11 +65,11 @@ Testa Frost Bygg gratis i 30 dagar. Ingen bindningstid, inget kreditkort krävs.
     `,
   },
   'bygglet-vs-frost-bygg': {
-    title: 'Bygglet vs Frost Bygg: Komplett jämförelse 2025',
+    title: 'Bygglet vs Frost Bygg: Komplett jämförelse 2026',
     excerpt: 'En detaljerad jämförelse av funktioner, priser och användarupplevelse.',
     category: 'Industry',
     readTime: '7 min',
-    date: '12 jan 2025',
+    date: '12 jan 2026',
     content: `
 ## Bakgrund
 
@@ -102,13 +102,13 @@ I denna artikel jämför vi Bygglet och Frost Bygg funktioner för funktion, pri
 | ROT-automation | Manuellt | AI-drivet ✅ |
 | Faktura-OCR | Manuellt | AI-drivet ✅ |
 | Offline-läge | Begränsat | Fullt stöd ✅ |
-| Modern UI | 2010-design | 2025-design ✅ |
+| Modern UI | 2010-design | 2026-design ✅ |
 | Dark mode | Nej | Ja ✅ |
 | Uppdateringar | Kvartalsvis | Veckovis ✅ |
 
 ## AI-funktioner
 
-Den största skillnaden 2025 är AI. Frost Bygg har byggt AI-automation i kärnan:
+Den största skillnaden 2026 är AI. Frost Bygg har byggt AI-automation i kärnan:
 
 - **ROT-sammanfattningar**: Genereras automatiskt
 - **Faktura-läsning**: AI extraherar data från PDF:er
@@ -136,14 +136,14 @@ Vi erbjuder gratis migrationshjälp för Bygglet-kunder. Kontakta oss så hjälp
   },
   'hur-vi-byggde-frost-bygg': {
     title: 'Hur vi byggde Frost Bygg på 2 veckor',
-    excerpt: 'Berättelsen om hur en 18-åring från Ljusdal byggde ett komplett projektverktyg.',
+    excerpt: 'Berättelsen om hur en 16-åring från Stockholm byggde ett komplett projektverktyg.',
     category: 'Company',
     readTime: '4 min',
-    date: '10 jan 2025',
+    date: '10 jan 2026',
     content: `
 ## Det började med frustration
 
-2024. Jag satt hemma i Ljusdal och hjälpte ett lokalt byggföretag med deras administration. De betalade 3,000 kr/månad för Bygglet.
+2025. Jag satt hemma i Stockholm och hjälpte ett lokalt byggföretag med deras administration. De betalade 3,000 kr/månad för Bygglet.
 
 Jag tittade på systemet. Det såg ut som något från 2010. Ingen AI. Ingen offline. Klumpigt gränssnitt.
 
@@ -201,7 +201,7 @@ Häng med på resan.
     excerpt: 'Dolda avgifter, setup-kostnader och per-användare-priser.',
     category: 'Industry',
     readTime: '6 min',
-    date: '8 jan 2025',
+    date: '8 jan 2026',
     content: `
 ## Det de inte berättar på säljmötet
 
@@ -267,16 +267,16 @@ Fråga alltid om:
 Eller välj en leverantör med transparent prissättning från början.
     `,
   },
-  'ai-i-byggbranschen-2025': {
-    title: 'AI i byggbranschen: Vad som är möjligt 2025',
+  'ai-i-byggbranschen-2026': {
+    title: 'AI i byggbranschen: Vad som är möjligt 2026',
     excerpt: 'Från ROT-automation till prediktiv analys. Hur AI förändrar byggbranschen.',
     category: 'Industry',
     readTime: '8 min',
-    date: '5 jan 2025',
+    date: '5 jan 2026',
     content: `
 ## AI-revolutionen kommer till bygget
 
-2024 var året då AI gick från science fiction till verklighet. 2025 är året då byggbranschen börjar dra nytta av det.
+2025 var året då AI gick från science fiction till verklighet. 2026 är året då byggbranschen börjar dra nytta av det.
 
 ## Användningsområden idag
 
@@ -326,15 +326,15 @@ Vi använder två AI-modeller:
 
 ## Vad som kommer
 
-### Q1 2025
+### Q1 2026
 - Röstinmatning för tidrapportering
 - AI-driven budgetoptimering
 
-### Q2 2025
+### Q2 2026
 - Prediktiv analys av projektrisker
 - Automatisk resursallokering
 
-### Q3 2025
+### Q3 2026
 - BIM-integration med AI-tolkning
 - AR-stöd för projektvisualisering
 

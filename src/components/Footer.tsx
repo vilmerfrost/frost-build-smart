@@ -1,24 +1,24 @@
+import { Link } from 'react-router-dom';
 import { Snowflake, Linkedin, Github, Mail } from 'lucide-react';
 
 const footerLinks = {
   produkt: [
-    { label: 'Funktioner', href: '#funktioner' },
-    { label: 'Priser', href: '#priser' },
-    { label: 'Integrationer', href: '#integrationer' },
-    { label: 'Changelog', href: '#' },
+    { label: 'Funktioner', href: '/#features' },
+    { label: 'Priser', href: '/#pricing' },
+    { label: 'Vs Bygglet', href: '/vs-bygglet', isRoute: true },
+    { label: 'Changelog', href: '/changelog', isRoute: true },
+    { label: 'För utvecklare', href: '/developers', isRoute: true },
   ],
   foretag: [
-    { label: 'Om oss', href: '#om-oss' },
-    { label: 'Kontakt', href: '#kontakt' },
-    { label: 'Karriär', href: '#' },
-    { label: 'Villkor', href: '#' },
-    { label: 'Integritet', href: '#' },
+    { label: 'Om oss', href: '/#about' },
+    { label: 'Kontakt', href: '/contact', isRoute: true },
+    { label: 'Blogg', href: '/blog', isRoute: true },
   ],
-  resurser: [
-    { label: 'Dokumentation', href: '#' },
-    { label: 'Support', href: '#' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Status', href: '#' },
+  juridiskt: [
+    { label: 'Säkerhet', href: '/security', isRoute: true },
+    { label: 'Integritetspolicy', href: '#' },
+    { label: 'Användarvillkor', href: '#' },
+    { label: 'GDPR', href: '#' },
   ],
 };
 
@@ -64,12 +64,21 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               {footerLinks.produkt.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -80,28 +89,46 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               {footerLinks.foretag.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground">Resurser</h4>
+            <h4 className="font-semibold text-foreground">Juridiskt</h4>
             <ul className="mt-4 space-y-3">
-              {footerLinks.resurser.map((link) => (
+              {footerLinks.juridiskt.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -111,10 +138,10 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2025 Frost Solutions AB
+            © 2026 Frost Solutions AB
           </p>
           <p className="flex items-center gap-2 text-sm text-muted-foreground">
-            Made with <Snowflake className="h-4 w-4 text-accent" /> in Ljusdal, Sweden
+            Made with <Snowflake className="h-4 w-4 text-accent" /> in Stockholm, Sweden
           </p>
         </div>
       </div>

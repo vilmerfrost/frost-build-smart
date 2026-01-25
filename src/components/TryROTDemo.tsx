@@ -260,7 +260,7 @@ export function TryROTDemo() {
                     Testa igen
                   </Button>
                   <Button variant="frost" className="group">
-                    Starta gratis - Första månaden 0 kr
+                    Starta gratis - 30 dagars trial
                   </Button>
                 </div>
               </div>

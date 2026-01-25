@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Wrench, Zap, Lock, Handshake, Quote } from 'lucide-react';
+import { Wrench, Zap, Lock, Handshake, Quote, Mail } from 'lucide-react';
 
 const values = [
   {
@@ -39,10 +39,10 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="mb-8"
             >
-              <h2 className="text-[44px] font-bold text-white leading-tight mb-4">
+              <h2 className="text-[44px] font-bold text-foreground leading-tight mb-4">
                 Varför jag byggde Frost
               </h2>
-              <p className="text-xl text-white/40 font-medium">
+              <p className="text-xl text-muted-foreground font-medium">
                 En lösning för det jag älskar
               </p>
             </motion.div>
@@ -55,17 +55,17 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="space-y-6 mb-10"
             >
-              <p className="text-white/60 leading-[1.8] tracking-wide">
+              <p className="text-muted-foreground leading-[1.8] tracking-wide">
                 Frost Bygg föddes från en enkel observation: byggbranschen kämpar med samma 
                 administrativa problem som alla andra, men ingen hade byggt en lösning 
-                <span className="text-white font-medium"> för</span> bygget.
+                <span className="text-foreground font-medium"> för</span> bygget.
               </p>
-              <p className="text-white/60 leading-[1.8] tracking-wide">
+              <p className="text-muted-foreground leading-[1.8] tracking-wide">
                 Jag tröttnade på att se duktiga hantverkare slösa timmar på Excel och 
                 pappersarbete. Så jag byggde Frost – ett verktyg som förstår bygget och 
                 automatiserar det tråkiga jobbet.
               </p>
-              <p className="text-white/60 leading-[1.8] tracking-wide">
+              <p className="text-muted-foreground leading-[1.8] tracking-wide">
                 Nu vill jag hjälpa <span className="text-primary font-semibold">svenska byggföretag</span> att 
                 fokusera på det som spelar roll: att bygga.
               </p>
@@ -79,8 +79,8 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Vem ligger bakom Frost?</h3>
-              <p className="text-lg text-white/40 mb-8 font-medium">
+              <h3 className="text-2xl font-bold text-foreground mb-2">Vem ligger bakom Frost?</h3>
+              <p className="text-lg text-muted-foreground mb-8 font-medium">
                 Solo-grundare med passion för byggbranschen
               </p>
 
@@ -89,7 +89,7 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 viewport={{ once: true }}
-                className="p-6 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all duration-300"
+                className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex flex-col items-center text-center">
                   {/* Avatar */}
@@ -102,16 +102,21 @@ export function AboutSection() {
                   >
                     <span className="text-white font-bold text-3xl">VF</span>
                   </div>
-                  <h4 className="text-white font-bold text-lg mb-1">Vilmer Frost</h4>
-                  <p 
-                    className="text-sm font-semibold mb-2"
-                    style={{ color: 'hsl(22 80% 60%)' }}
-                  >
+                  <h4 className="text-foreground font-bold text-lg mb-1">Vilmer Frost</h4>
+                  <p className="text-sm font-semibold mb-2 text-primary">
                     Grundare & CEO
                   </p>
-                  <p className="text-sm text-white/40 max-w-[200px] leading-relaxed">
+                  <p className="text-sm text-muted-foreground max-w-[220px] leading-relaxed mb-4">
                     16-årig entreprenör från Stockholm. Bygger Frost för att göra byggbranschens administration enklare.
                   </p>
+                  {/* Direct contact */}
+                  <a 
+                    href="mailto:vilmer@frostbygg.se"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+                  >
+                    <Mail className="h-4 w-4" />
+                    Kontakta mig direkt
+                  </a>
                 </div>
               </motion.div>
             </motion.div>
@@ -124,7 +129,7 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="mt-12"
             >
-              <h3 className="text-2xl font-bold text-white mb-6">Vad jag bryr mig om</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">Vad jag bryr mig om</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {values.map((value, index) => (
                   <motion.div
@@ -143,8 +148,8 @@ export function AboutSection() {
                     >
                       <value.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h4 className="text-white font-bold mb-2">{value.title}</h4>
-                    <p className="text-sm text-white/40 leading-relaxed font-medium">{value.description}</p>
+                    <h4 className="text-foreground font-bold mb-2">{value.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed font-medium">{value.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -161,10 +166,9 @@ export function AboutSection() {
           >
             {/* Mission statement card */}
             <div 
-              className="relative rounded-2xl border p-8 lg:p-10 min-h-[400px] flex flex-col"
+              className="relative rounded-2xl border border-primary/20 p-8 lg:p-10 min-h-[400px] flex flex-col"
               style={{
                 background: 'linear-gradient(135deg, rgba(255, 95, 21, 0.1), rgba(255, 95, 21, 0.05))',
-                borderColor: 'rgba(255, 95, 21, 0.2)',
               }}
             >
               {/* Quote icon */}
@@ -172,54 +176,63 @@ export function AboutSection() {
                 <Quote className="h-6 w-6 text-primary" />
               </div>
 
-              <blockquote className="text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 mt-4 flex-1">
+              <blockquote className="text-xl lg:text-2xl text-foreground/80 leading-relaxed mb-8 mt-4 flex-1">
                 "Jag tror att den bästa tekniken är den du inte märker. 
                 Frost ska bara <span className="text-primary font-semibold">fungera</span> – 
                 så du kan fokusera på att bygga något fantastiskt."
               </blockquote>
 
-              <div className="flex items-center gap-4">
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center"
-                  style={{ 
-                    background: 'linear-gradient(135deg, hsl(22 100% 55%), hsl(22 80% 60%))',
-                    filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.3))',
-                  }}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div 
+                    className="w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{ 
+                      background: 'linear-gradient(135deg, hsl(22 100% 55%), hsl(22 80% 60%))',
+                      filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.3))',
+                    }}
+                  >
+                    <span className="text-white font-bold">VF</span>
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">Vilmer Frost</p>
+                    <p className="text-sm text-muted-foreground">Grundare, Frost Bygg</p>
+                  </div>
+                </div>
+                <a 
+                  href="mailto:vilmer@frostbygg.se"
+                  className="hidden sm:flex items-center gap-1.5 text-sm text-primary hover:underline"
                 >
-                  <span className="text-white font-bold">VF</span>
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Vilmer Frost</p>
-                  <p className="text-sm text-white/40">Grundare, Frost Bygg</p>
-                </div>
+                  <Mail className="h-4 w-4" />
+                  <span>vilmer@frostbygg.se</span>
+                </a>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/10">
+              <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-border">
                 <div className="text-center">
                   <p className="text-2xl lg:text-3xl font-bold text-primary">1</p>
-                  <p className="text-xs text-white/40 mt-1">Grundare</p>
+                  <p className="text-xs text-muted-foreground mt-1">Grundare</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-white">2026</p>
-                  <p className="text-xs text-white/40 mt-1">Grundat</p>
+                  <p className="text-2xl lg:text-3xl font-bold text-foreground">2026</p>
+                  <p className="text-xs text-muted-foreground mt-1">Grundat</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-white">🇸🇪</p>
-                  <p className="text-xs text-white/40 mt-1">Stockholm</p>
+                  <p className="text-2xl lg:text-3xl font-bold text-foreground">🇸🇪</p>
+                  <p className="text-xs text-muted-foreground mt-1">Stockholm</p>
                 </div>
               </div>
             </div>
 
             {/* Small trust badges */}
             <div className="mt-6 flex flex-wrap gap-3 justify-center">
-              <span className="px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-xs text-white/50">
+              <span className="px-3 py-1.5 rounded-full bg-card border border-border text-xs text-muted-foreground">
                 🔒 GDPR-kompatibel
               </span>
-              <span className="px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-xs text-white/50">
+              <span className="px-3 py-1.5 rounded-full bg-card border border-border text-xs text-muted-foreground">
                 🇸🇪 Svensk support
               </span>
-              <span className="px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-xs text-white/50">
+              <span className="px-3 py-1.5 rounded-full bg-card border border-border text-xs text-muted-foreground">
                 ⚡ 99.9% uptime
               </span>
             </div>

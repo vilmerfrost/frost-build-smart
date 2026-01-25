@@ -1,22 +1,58 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, ArrowRight, Check, Loader2 } from 'lucide-react';
+import { Snowflake, ArrowRight, Check, Loader2, Twitter, Linkedin, Mail } from 'lucide-react';
+import { toast } from 'sonner';
+import { subscribeNewsletter } from '@/lib/email';
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState('');
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    setError('');
+    
+    if (!email) {
+      setError('Vänligen ange din e-postadress');
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setError('Vänligen ange en giltig e-postadress');
+      toast.error('Ogiltig e-postadress', {
+        description: 'Kontrollera att du har angett en korrekt e-postadress.',
+      });
+      return;
+    }
     
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSubscribed(true);
-    setEmail('');
+    
+    try {
+      const result = await subscribeNewsletter(email);
+      
+      if (result.success) {
+        setIsSubscribed(true);
+        setEmail('');
+        toast.success('Prenumeration bekräftad!', {
+          description: 'Du kommer nu få vårt nyhetsbrev.',
+        });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch {
+      setError('Något gick fel. Försök igen.');
+      toast.error('Något gick fel', {
+        description: 'Kunde inte slutföra prenumerationen. Försök igen.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -33,35 +69,46 @@ export function Footer() {
             </p>
             
             {isSubscribed ? (
-              <div className="flex items-center justify-center gap-2 text-success">
+              <div className="flex items-center justify-center gap-2 text-success py-3 px-6 rounded-lg bg-success/10 border border-success/20">
                 <Check className="h-5 w-5" />
-                <span>Tack för din prenumeration!</span>
+                <span className="font-medium">Tack för din prenumeration!</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Din e-post"
-                  className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-primary/50 transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-glow px-6 py-3 flex items-center gap-2 disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <>
-                      Prenumerera
-                      <ArrowRight className="h-4 w-4" />
-                    </>
-                  )}
-                </button>
-              </form>
+              <div className="space-y-3">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (error) setError('');
+                    }}
+                    placeholder="Din e-post"
+                    className={`flex-1 px-4 py-3 rounded-lg bg-white/5 border text-white placeholder:text-white/30 focus:outline-none transition-colors ${
+                      error ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-primary/50'
+                    }`}
+                    aria-label="E-postadress för nyhetsbrev"
+                    aria-invalid={!!error}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-glow px-6 py-3 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed min-w-[140px]"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <>
+                        Prenumerera
+                        <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+                {error && (
+                  <p className="text-sm text-red-400 text-center">{error}</p>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -91,6 +138,7 @@ export function Footer() {
                 <li><a href="#features" className="text-sm text-white/40 hover:text-white transition-colors">Funktioner</a></li>
                 <li><a href="#pricing" className="text-sm text-white/40 hover:text-white transition-colors">Priser</a></li>
                 <li><Link to="/changelog" className="text-sm text-white/40 hover:text-white transition-colors">Ändringslogg</Link></li>
+                <li><Link to="/developers" className="text-sm text-white/40 hover:text-white transition-colors">För utvecklare</Link></li>
               </ul>
             </div>
 
@@ -99,13 +147,14 @@ export function Footer() {
               <ul className="space-y-2">
                 <li><a href="#about" className="text-sm text-white/40 hover:text-white transition-colors">Om oss</a></li>
                 <li><Link to="/blog" className="text-sm text-white/40 hover:text-white transition-colors">Blogg</Link></li>
-                <li><a href="#contact" className="text-sm text-white/40 hover:text-white transition-colors">Kontakt</a></li>
+                <li><Link to="/contact" className="text-sm text-white/40 hover:text-white transition-colors">Kontakt</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">Juridiskt</h4>
               <ul className="space-y-2">
+                <li><Link to="/security" className="text-sm text-white/40 hover:text-white transition-colors">Säkerhet</Link></li>
                 <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">Integritetspolicy</a></li>
                 <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">Användarvillkor</a></li>
                 <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">GDPR</a></li>
@@ -118,6 +167,36 @@ export function Footer() {
             <p className="text-sm text-white/30">
               © 2026 Frost Solutions. Alla rättigheter förbehållna.
             </p>
+            
+            {/* Social Links */}
+            <div className="flex items-center gap-4">
+              <a 
+                href="https://twitter.com/frostbygg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all"
+                aria-label="Följ oss på Twitter"
+              >
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a 
+                href="https://linkedin.com/company/frostbygg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all"
+                aria-label="Följ oss på LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a 
+                href="mailto:kontakt@frostsolutions.se"
+                className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all"
+                aria-label="Skicka e-post till oss"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+            </div>
+
             <p className="text-xs text-white/20">
               Byggd med ❄️ i Stockholm
             </p>

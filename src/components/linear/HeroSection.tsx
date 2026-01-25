@@ -1,22 +1,27 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Shield, Zap, Sparkles, BadgeCheck } from 'lucide-react';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 export function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
+    <section 
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12"
+      aria-label="Huvudsektion"
+    >
       {/* Background effects */}
       <div className="absolute inset-0 gradient-radial-top" />
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
-      {/* Animated glow orb */}
+      {/* Animated glow orb - respects reduced motion */}
       <motion.div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full"
         style={{
           background: 'radial-gradient(circle, hsl(22 100% 55% / 0.12) 0%, transparent 70%)',
         }}
-        animate={{
+        animate={shouldReduceMotion ? {} : {
           scale: [1, 1.1, 1],
           opacity: [0.5, 0.8, 0.5],
         }}
@@ -48,7 +53,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-white/50 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+              className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
             >
               Spara 10+ timmar per vecka på administration.
               <br className="hidden sm:block" />
@@ -85,10 +90,10 @@ export function HeroSection() {
               </a>
               <a 
                 href={`${PRODUCTION_URL}/demo`}
-                className="text-white/40 hover:text-white hover:underline underline-offset-4 transition-all duration-200 flex items-center gap-1 text-base"
+                className="text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-1.5 text-base group"
               >
-                Boka en demo
-                <ArrowRight className="h-4 w-4" />
+                <span className="border-b border-border group-hover:border-foreground/60 transition-colors">Boka en demo</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </motion.div>
 
@@ -97,10 +102,69 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-xs text-white/30 mt-4"
+              className="text-xs text-muted-foreground/70 mt-4"
             >
               Ingen kreditkort krävs • Klar på 2 minuter
             </motion.p>
+
+            {/* Trust Indicators - Honest signals for new startup */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 pt-8 border-t border-border"
+            >
+              <div className="flex items-center gap-2 text-primary">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-sm font-medium">Ny på marknaden</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <BadgeCheck className="h-4 w-4 text-green-500" />
+                <span className="text-sm">30 dagars pengarna-tillbaka-garanti</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Shield className="h-4 w-4" />
+                <span className="text-sm">GDPR-säker</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Zap className="h-4 w-4" />
+                <span className="text-sm">Svensk support</span>
+              </div>
+            </motion.div>
+
+            {/* Integration Partners - Honest trust signal */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-6"
+            >
+              <p className="text-xs text-muted-foreground/60 mb-3 text-center lg:text-left">
+                Integreras med dina befintliga system:
+              </p>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                {/* Fortnox */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                  <div className="w-5 h-5 rounded bg-[#00A3E0] flex items-center justify-center text-white text-xs font-bold">F</div>
+                  <span className="text-sm text-muted-foreground">Fortnox</span>
+                </div>
+                {/* Visma */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                  <div className="w-5 h-5 rounded bg-[#E31837] flex items-center justify-center text-white text-xs font-bold">V</div>
+                  <span className="text-sm text-muted-foreground">Visma</span>
+                </div>
+                {/* BankID */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                  <div className="w-5 h-5 rounded bg-[#235971] flex items-center justify-center text-white text-xs font-bold">B</div>
+                  <span className="text-sm text-muted-foreground">BankID</span>
+                </div>
+                {/* Swish */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                  <div className="w-5 h-5 rounded bg-[#FF6600] flex items-center justify-center text-white text-xs font-bold">S</div>
+                  <span className="text-sm text-muted-foreground">Swish</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Right: Phone Mockup with GLOW */}
@@ -110,14 +174,14 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="relative"
           >
-            {/* CRITICAL: Large pulsing orange glow behind phone */}
+            {/* Large pulsing orange glow behind phone - respects reduced motion */}
             <motion.div 
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] pointer-events-none"
               style={{
                 background: 'radial-gradient(circle, hsl(22 100% 55% / 0.35) 0%, hsl(22 100% 55% / 0.15) 40%, transparent 70%)',
                 filter: 'blur(80px)',
               }}
-              animate={{
+              animate={shouldReduceMotion ? {} : {
                 opacity: [0.25, 0.4, 0.25],
                 scale: [1, 1.05, 1],
               }}
@@ -128,13 +192,13 @@ export function HeroSection() {
               }}
             />
             
-            {/* Phone frame */}
+            {/* Phone frame - respects reduced motion */}
             <motion.div
               className="relative mx-auto w-[260px] sm:w-[300px] z-10"
               style={{
                 perspective: '1000px',
               }}
-              animate={{
+              animate={shouldReduceMotion ? {} : {
                 rotateY: [-3, 3, -3],
                 rotateX: [1, -1, 1],
               }}

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 export function CTASection() {
   return (

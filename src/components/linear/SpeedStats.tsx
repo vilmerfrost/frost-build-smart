@@ -1,26 +1,64 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Scan, MapPin, Download, Zap } from 'lucide-react';
+import { useRef, useEffect, useState } from 'react';
 
 const stats = [
   {
     icon: Scan,
-    time: '5',
+    time: 5,
     unit: 'sek',
     label: 'Scanna faktura',
   },
   {
     icon: MapPin,
-    time: '2',
+    time: 2,
     unit: 'sek',
     label: 'Stämpla in',
   },
   {
     icon: Download,
-    time: '10',
+    time: 10,
     unit: 'sek',
     label: 'Exportera löneunderlag',
   },
 ];
+
+// Animated counter component
+function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated.current) {
+      hasAnimated.current = true;
+      const startTime = Date.now();
+      const endTime = startTime + duration * 1000;
+
+      const animate = () => {
+        const now = Date.now();
+        const progress = Math.min((now - startTime) / (duration * 1000), 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentCount = Math.round(easeOutQuart * target);
+        
+        setCount(currentCount);
+
+        if (now < endTime) {
+          requestAnimationFrame(animate);
+        } else {
+          setCount(target);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, target, duration]);
+
+  return <span ref={ref}>{count}</span>;
+}
 
 export function SpeedStats() {
   return (
@@ -65,7 +103,9 @@ export function SpeedStats() {
               </div>
               
               <div className="mb-3">
-                <span className="text-6xl sm:text-7xl font-extrabold text-white">{stat.time}</span>
+                <span className="text-6xl sm:text-7xl font-extrabold text-white">
+                  <AnimatedCounter target={stat.time} duration={1.2} />
+                </span>
                 <span className="text-2xl sm:text-3xl font-bold text-white/60 ml-1">{stat.unit}</span>
               </div>
               

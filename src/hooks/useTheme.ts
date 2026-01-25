@@ -1,29 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
+// Simple dark-mode only hook - no light mode support
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('frost-theme');
-      if (stored === 'dark' || stored === 'light') return stored;
-      // Default to light mode for professional appearance
-      return 'light';
-    }
-    return 'light';
-  });
-
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('frost-theme', theme);
-  }, [theme]);
+    // Always ensure dark mode is set
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  return { 
+    theme: 'dark' as const, 
+    resolvedTheme: 'dark' as const 
   };
-
-  return { theme, setTheme, toggleTheme };
 }

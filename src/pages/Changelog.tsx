@@ -5,73 +5,73 @@ import { Check, Hammer, Calendar, Rocket } from 'lucide-react';
 const changelogItems = [
   {
     status: 'shipped',
-    date: 'Jan 2025',
+    date: 'Jan 2026',
     title: 'ROT AI Automation',
     description: 'Automatisk generering av ROT-sammanfattningar med AI. Spara 10+ timmar per månad på pappersarbete.',
   },
   {
     status: 'shipped',
-    date: 'Jan 2025',
+    date: 'Jan 2026',
     title: 'Offline-First PWA',
     description: 'Full funktionalitet utan internet. Synkas automatiskt när du får uppkoppling igen.',
   },
   {
     status: 'shipped',
-    date: 'Jan 2025',
+    date: 'Jan 2026',
     title: 'Invoice OCR (Gemini 2.0)',
     description: 'AI läser fakturor på sekunder. Extraherar leverantör, belopp, datum och radposter automatiskt.',
   },
   {
     status: 'shipped',
-    date: 'Dec 2024',
+    date: 'Dec 2025',
     title: 'Fortnox Integration',
     description: 'Exportera löner och bokföring direkt till Fortnox med ett klick.',
   },
   {
     status: 'shipped',
-    date: 'Dec 2024',
+    date: 'Dec 2025',
     title: 'Visma Integration',
     description: 'Sömlös koppling till Visma eEkonomi för automatisk synkronisering.',
   },
   {
     status: 'shipped',
-    date: 'Dec 2024',
+    date: 'Dec 2025',
     title: 'Dark Mode',
     description: 'Professionellt mörkt tema för bekvämt arbete dygnet runt.',
   },
   {
     status: 'in-progress',
-    date: 'Feb 2025',
+    date: 'Feb 2026',
     title: 'BankID Login',
     description: 'Säker inloggning med BankID för enkel och trygg autentisering.',
   },
   {
     status: 'in-progress',
-    date: 'Feb 2025',
+    date: 'Feb 2026',
     title: 'Advanced Analytics',
     description: 'AI-drivna insikter om dina projekt med prediktiva analyser och rapporter.',
   },
   {
     status: 'roadmap',
-    date: 'Mar 2025',
+    date: 'Mar 2026',
     title: 'Swish Payments',
     description: 'Betala fakturor direkt med Swish. Snabbt, enkelt och säkert.',
   },
   {
     status: 'roadmap',
-    date: 'Mar 2025',
+    date: 'Mar 2026',
     title: 'iOS/Android Apps',
     description: 'Native mobilappar för ännu bättre upplevelse på byggplatsen.',
   },
   {
     status: 'roadmap',
-    date: 'Apr 2025',
+    date: 'Apr 2026',
     title: 'BIM Integration',
     description: 'Koppling till BIM-modeller för visualisering och projektplanering.',
   },
   {
     status: 'roadmap',
-    date: 'Q2 2025',
+    date: 'Q2 2026',
     title: 'Voice Commands',
     description: 'Rapportera tid och uppdatera projekt med röstkommandon.',
   },
@@ -95,7 +95,7 @@ const getStatusStyles = (status: string) => {
     case 'shipped':
       return 'bg-success/10 text-success border-success/20';
     case 'in-progress':
-      return 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20';
+      return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
     case 'roadmap':
       return 'bg-muted text-muted-foreground border-border';
     default:
@@ -131,7 +131,7 @@ const Changelog = () => {
           <div className="flex justify-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 border border-success/20 text-success">
               <Rocket className="h-4 w-4" />
-              <span className="font-medium">Senaste uppdateringen: ROT AI (Jan 2025)</span>
+              <span className="font-medium">Senaste uppdateringen: ROT AI (Jan 2026)</span>
             </div>
           </div>
 
@@ -170,7 +170,7 @@ const Changelog = () => {
             {/* In Progress */}
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-600 dark:text-yellow-400">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-400">
                   <Hammer className="h-4 w-4" />
                 </span>
                 Under utveckling
@@ -186,7 +186,7 @@ const Changelog = () => {
                       <div className="rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-5">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="font-semibold text-foreground">{item.title}</h3>
-                          <span className="text-xs text-yellow-600 dark:text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded">
+                          <span className="text-xs text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded">
                             {item.date}
                           </span>
                         </div>

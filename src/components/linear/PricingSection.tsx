@@ -1,62 +1,41 @@
 import { motion } from 'framer-motion';
-import { Check, X, Rocket, Shield, Building2, ChevronDown } from 'lucide-react';
+import { Check, X, Rocket, Shield, ChevronDown, Calendar } from 'lucide-react';
 import { useState } from 'react';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 const tiers = [
   {
-    name: 'Starter',
-    price: '199',
-    billing: '* Per användare, minst 2 användare',
-    description: 'För små byggföretag (1-5 anställda)',
-    icon: Building2,
-    featured: false,
-    cta: 'Starta gratis',
-    ctaNote: 'Ingen kreditkort krävs',
-    ctaHref: `${PRODUCTION_URL}/signup`,
-    features: [
-      { name: 'Tidrapportering', included: true },
-      { name: 'AI-fakturatolkning', included: true },
-      { name: 'Enkla rapporter', included: true },
-      { name: 'Upp till 1 projekt', included: true },
-      { name: 'Advanced ÄTA-hantering', included: false },
-      { name: 'API-åtkomst', included: false },
-      { name: 'Priority support', included: false },
-    ],
-  },
-  {
     name: 'Pro',
     price: '499',
-    billing: '* Per användare, minst 2 användare',
-    description: 'Vår mest populära plan för växande företag (5-25 anställda)',
+    billing: 'Obegränsat antal användare',
+    description: 'Allt du behöver för att driva ditt byggföretag effektivt',
     icon: Rocket,
     featured: true,
     badge: 'POPULÄR',
     cta: 'Starta gratis',
-    ctaNote: '14 dagar gratis trial',
+    ctaNote: '30 dagar gratis trial',
     ctaHref: `${PRODUCTION_URL}/signup`,
     features: [
-      { name: 'Allt från Starter', included: true },
+      { name: 'Obegränsat antal användare', included: true },
       { name: 'Unlimited projekt', included: true },
+      { name: 'Tidrapportering', included: true },
+      { name: 'AI-fakturatolkning', included: true },
       { name: 'Advanced ÄTA-hantering', included: true },
       { name: 'Custom integrationer', included: true },
       { name: 'Team collaboration', included: true },
       { name: 'Priority support', included: true },
-      { name: 'API-åtkomst', included: false },
-      { name: 'White-label option', included: false },
     ],
   },
   {
     name: 'Enterprise',
     price: 'Kontakta oss',
     billing: null,
-    description: 'För större organisationer (25+ anställda)',
+    description: 'För större organisationer med speciella krav',
     icon: Shield,
     featured: false,
     isEnterprise: true,
     cta: 'Boka demo',
-    ctaNote: 'Meddela oss dina krav',
+    ctaNote: 'Skräddarsydd lösning',
     ctaHref: `${PRODUCTION_URL}/demo`,
     features: [
       { name: 'Allt från Pro', included: true },
@@ -72,8 +51,8 @@ const tiers = [
 
 const faqs = [
   {
-    question: 'Kan jag byta plan senare?',
-    answer: 'Ja, du kan byta plan när som helst. Vi tar inte betalt för förändring.',
+    question: 'Hur många användare kan jag ha?',
+    answer: 'Obegränsat! Med Pro-planen för 499 kr/månad får du obegränsat antal användare utan extra kostnad.',
   },
   {
     question: 'Finns det någon setup-kostnad?',
@@ -81,7 +60,7 @@ const faqs = [
   },
   {
     question: 'Vad ingår i den fria trial-perioden?',
-    answer: 'Full tillgång till alla Pro-features i 14 dagar. Ingen kreditkort krävs.',
+    answer: 'Full tillgång till alla Pro-features i 30 dagar. Ingen kreditkort krävs.',
   },
   {
     question: 'Kan ni anpassa priser för enterprise?',
@@ -101,16 +80,16 @@ export function PricingSection() {
           viewport={{ once: true }}
           className="text-center mb-20 max-w-[700px] mx-auto"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight mb-6">
             Enkla priser. Ingen överraskningar.
           </h2>
-          <p className="text-lg text-white/40 leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Välj den plan som passar din verksamhet. Transparent prissättning, inga dolda avgifter.
           </p>
         </motion.div>
 
-        {/* Pricing Grid - 3 columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+        {/* Pricing Grid - 2 columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6 mb-20 lg:items-stretch max-w-4xl mx-auto">
           {tiers.map((tier, index) => (
             <motion.div
               key={tier.name}
@@ -118,10 +97,10 @@ export function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`relative rounded-2xl p-8 flex flex-col justify-between min-h-[600px] transition-all duration-300 cursor-pointer ${
+              className={`relative rounded-2xl p-8 flex flex-col justify-between min-h-[580px] transition-all duration-300 ${
                 tier.featured
-                  ? 'bg-zinc-800 border-2 border-primary scale-105 shadow-[0_0_40px_hsl(22_100%_55%/0.3)] z-10'
-                  : 'bg-zinc-900 border border-white/10 hover:border-white/15 hover:shadow-[0_0_30px_hsl(22_100%_55%/0.15)] hover:-translate-y-2'
+                  ? 'bg-card border-2 border-primary lg:scale-105 shadow-[0_0_40px_hsl(22_100%_55%/0.3)] z-10 order-first lg:order-none'
+                  : 'bg-card border border-border hover:border-primary/30 hover:shadow-[0_0_30px_hsl(22_100%_55%/0.15)] hover:-translate-y-1'
               }`}
             >
               {/* Featured badge */}
@@ -140,29 +119,26 @@ export function PricingSection() {
 
               {/* Header */}
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">{tier.name}</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2">{tier.name}</h3>
                 
                 <div className="mb-1">
                   {tier.isEnterprise ? (
-                    <span 
-                      className="text-4xl font-bold"
-                      style={{ color: 'hsl(22 80% 60%)' }}
-                    >
+                    <span className="text-4xl font-bold text-primary">
                       {tier.price}
                     </span>
                   ) : (
                     <>
-                      <span className="text-5xl font-bold text-white">{tier.price}</span>
-                      <span className="text-lg text-white/40 ml-1">kr/månad</span>
+                      <span className="text-5xl font-bold text-foreground">{tier.price}</span>
+                      <span className="text-lg text-muted-foreground ml-1">kr/månad</span>
                     </>
                   )}
                 </div>
 
                 {tier.billing && (
-                  <p className="text-xs text-white/50 font-medium mb-6 leading-relaxed">{tier.billing}</p>
+                  <p className="text-xs text-muted-foreground font-medium mb-6 leading-relaxed">{tier.billing}</p>
                 )}
 
-                <p className="text-sm text-white/40 leading-relaxed mb-8">{tier.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-8">{tier.description}</p>
 
                 {/* Features */}
                 <ul className="space-y-3 mb-8">
@@ -171,9 +147,9 @@ export function PricingSection() {
                       {feature.included ? (
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
                       ) : (
-                        <X className="h-5 w-5 text-white/30 flex-shrink-0" />
+                        <X className="h-5 w-5 text-muted-foreground/50 flex-shrink-0" />
                       )}
-                      <span className={`text-sm ${feature.included ? 'text-white/70' : 'text-white/40'}`}>
+                      <span className={`text-sm ${feature.included ? 'text-foreground/80' : 'text-muted-foreground'}`}>
                         {feature.name}
                       </span>
                     </li>
@@ -185,7 +161,7 @@ export function PricingSection() {
               <div>
                 <a
                   href={tier.ctaHref}
-                  className={`w-full flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                  className={`w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
                     tier.isEnterprise
                       ? 'border-2 border-primary text-primary hover:bg-primary/10 hover:shadow-[0_0_20px_hsl(22_100%_55%/0.4)] hover:scale-[1.02]'
                       : 'text-white hover:scale-[1.02] active:scale-[0.98]'
@@ -207,9 +183,10 @@ export function PricingSection() {
                     }
                   }}
                 >
+                  {tier.isEnterprise && <Calendar className="h-4 w-4" />}
                   {tier.cta}
                 </a>
-                <p className="text-xs text-white/40 text-center mt-3 font-medium">{tier.ctaNote}</p>
+                <p className="text-xs text-muted-foreground text-center mt-3 font-medium">{tier.ctaNote}</p>
               </div>
             </motion.div>
           ))}
@@ -223,7 +200,7 @@ export function PricingSection() {
           viewport={{ once: true }}
           className="max-w-[800px] mx-auto py-20"
         >
-          <h3 className="text-4xl font-bold text-white text-center mb-12">
+          <h3 className="text-4xl font-bold text-foreground text-center mb-12">
             Vanliga frågor
           </h3>
           <div className="space-y-4">
@@ -242,17 +219,17 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <div 
-      className="rounded-xl bg-zinc-900 border border-white/10 overflow-hidden transition-colors hover:border-white/20"
+      className="rounded-xl bg-card border border-border overflow-hidden transition-colors hover:border-primary/30"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer group"
       >
-        <h4 className="text-white font-semibold group-hover:text-primary transition-colors">
+        <h4 className="text-foreground font-semibold group-hover:text-primary transition-colors">
           {question}
         </h4>
         <ChevronDown 
-          className={`h-5 w-5 text-white/50 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+          className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
         />
       </button>
       <motion.div
@@ -261,7 +238,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         transition={{ duration: 0.2 }}
         className="overflow-hidden"
       >
-        <p className="px-6 pb-4 text-sm text-white/50 leading-relaxed">
+        <p className="px-6 pb-4 text-sm text-muted-foreground leading-relaxed">
           {answer}
         </p>
       </motion.div>
