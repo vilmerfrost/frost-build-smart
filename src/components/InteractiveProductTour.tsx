@@ -178,10 +178,19 @@ export function InteractiveProductTour() {
                     {hotspots.find((h) => h.id === activeHotspot)?.description}
                   </p>
                   <div className="flex gap-3">
-                    <Button onClick={handleNext} variant="frost" className="flex-1 group">
-                      {activeHotspot === hotspots.length ? 'Starta gratis' : 'Nästa'}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
+                    {activeHotspot === hotspots.length ? (
+                      <Button variant="frost" className="flex-1 group" asChild>
+                        <a href="/app/signup">
+                          Starta gratis
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button onClick={handleNext} variant="frost" className="flex-1 group">
+                        Nästa
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -194,8 +203,10 @@ export function InteractiveProductTour() {
               <p className="text-success font-medium mb-4">
                 ✅ Du har utforskat alla funktioner!
               </p>
-              <Button variant="frost" size="lg">
-                Starta gratis - Första månaden 0 kr
+              <Button variant="frost" size="lg" asChild>
+                <a href="/app/signup">
+                  Starta gratis - Första månaden 0 kr
+                </a>
               </Button>
             </div>
           )}

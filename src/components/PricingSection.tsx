@@ -1,9 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Check, ArrowRight, Zap, Receipt, Sparkles } from 'lucide-react';
-import { ExternalLink } from '@/components/ExternalLink';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 const includedFeatures = [
   'Obegränsat antal användare',
@@ -86,10 +84,10 @@ export function PricingSection() {
 
               {/* CTA */}
               <Button variant="hero" size="lg" className="w-full group shadow-lg hover:shadow-xl transition-all" asChild>
-                <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+                <a href={`${PRODUCTION_URL}/signup`}>
                   Starta gratis provperiod
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </ExternalLink>
+                </a>
               </Button>
 
               <p className="mt-4 text-center text-sm text-muted-foreground">

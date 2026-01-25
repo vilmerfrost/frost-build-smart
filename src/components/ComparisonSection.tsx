@@ -163,9 +163,11 @@ export function ComparisonSection() {
                   </div>
                 </div>
 
-                <Button variant="hero" className="mt-6 w-full group">
-                  Se vad du kan spara - starta gratis
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <Button variant="hero" className="mt-6 w-full group" asChild>
+                  <a href="/app/signup">
+                    Se vad du kan spara - starta gratis
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </a>
                 </Button>
               </div>
             </div>

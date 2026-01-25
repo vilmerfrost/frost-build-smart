@@ -259,8 +259,10 @@ export function TryROTDemo() {
                   <Button onClick={reset} variant="frost-outline">
                     Testa igen
                   </Button>
-                  <Button variant="frost" className="group">
-                    Starta gratis - 30 dagars trial
+                  <Button variant="frost" className="group" asChild>
+                    <a href="/app/signup">
+                      Starta gratis - 30 dagars trial
+                    </a>
                   </Button>
                 </div>
               </div>

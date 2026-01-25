@@ -1,8 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Star, Play, Sparkles } from 'lucide-react';
-import { ExternalLink } from '@/components/ExternalLink';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 export function HeroSection() {
   const features = ['Resursplanering', 'Tidrapporter', 'Offerter', 'Fakturor', 'ROT/RUT'];
@@ -52,16 +50,16 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <div className="animate-fade-in-up stagger-4 mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <Button variant="hero" size="xl" className="group shadow-lg hover:shadow-xl transition-shadow" asChild>
-              <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+              <a href={`${PRODUCTION_URL}/signup`}>
                 Kom igång gratis
                 <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </ExternalLink>
+              </a>
             </Button>
             <Button variant="hero-secondary" size="xl" className="group" asChild>
-              <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+              <a href={`${PRODUCTION_URL}/demo`}>
                 <Play className="mr-2 h-4 w-4" />
                 Se demo
-              </ExternalLink>
+              </a>
             </Button>
           </div>
 

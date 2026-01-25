@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowRight, Send, Calendar, Check, Sparkles } from 'lucide-react';
-import { ExternalLink } from '@/components/ExternalLink';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
@@ -61,10 +59,10 @@ export function ContactSection() {
               </ul>
 
               <Button variant="hero" size="lg" className="mt-8 w-full group/btn shadow-lg hover:shadow-xl transition-all" asChild>
-                <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+                <a href={`${PRODUCTION_URL}/signup`}>
                   Starta gratis
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </ExternalLink>
+                </a>
               </Button>
             </div>
           </div>

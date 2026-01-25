@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { useEasterEggTriggers } from '@/components/EasterEggs';
-import { ExternalLink } from '@/components/ExternalLink';
-
-const PRODUCTION_URL = 'https://frostsolutions.se';
+import { PRODUCTION_URL } from '@/lib/constants';
 
 const navLinks = [
   { href: '#funktioner', label: 'Funktioner' },
@@ -79,13 +77,13 @@ export function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden items-center gap-3 md:flex">
             <Button variant="ghost" size="sm" className="text-muted-foreground" asChild>
-              <ExternalLink href={`${PRODUCTION_URL}/login`}>Logga in</ExternalLink>
+              <a href={`${PRODUCTION_URL}/login`}>Logga in</a>
             </Button>
             <Button variant="frost" size="sm" className="shadow-md hover:shadow-lg transition-shadow group" asChild>
-              <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+              <a href={`${PRODUCTION_URL}/signup`}>
                 Kom igång
-                <ExternalLinkIcon className="ml-1 h-3 w-3 opacity-70" />
-              </ExternalLink>
+                <ArrowRight className="ml-1 h-3 w-3 opacity-70" />
+              </a>
             </Button>
           </div>
 
@@ -133,13 +131,13 @@ export function Navbar() {
             ))}
             <div className="mt-4 flex flex-col gap-2">
               <Button variant="ghost" className="justify-start text-muted-foreground" asChild>
-                <ExternalLink href={`${PRODUCTION_URL}/login`}>Logga in</ExternalLink>
+                <a href={`${PRODUCTION_URL}/login`}>Logga in</a>
               </Button>
               <Button variant="frost" className="shadow-md" asChild>
-                <ExternalLink href={`${PRODUCTION_URL}/signup`}>
+                <a href={`${PRODUCTION_URL}/signup`}>
                   Kom igång
-                  <ExternalLinkIcon className="ml-1 h-3 w-3 opacity-70" />
-                </ExternalLink>
+                  <ArrowRight className="ml-1 h-3 w-3 opacity-70" />
+                </a>
               </Button>
             </div>
           </div>

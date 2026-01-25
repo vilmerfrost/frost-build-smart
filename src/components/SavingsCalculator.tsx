@@ -204,9 +204,11 @@ export function SavingsCalculator() {
 
             {/* CTA */}
             <div className="mt-10 text-center">
-              <Button variant="frost" size="xl" className="group">
-                💰 Spara {annualSavings.toLocaleString('sv-SE')} kr/år - Starta gratis
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <Button variant="frost" size="xl" className="group" asChild>
+                <a href="/app/signup">
+                  💰 Spara {annualSavings.toLocaleString('sv-SE')} kr/år - Starta gratis
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
               </Button>
               <p className="text-sm text-muted-foreground mt-3">
                 Inget betalkort behövs. Avsluta när du vill.

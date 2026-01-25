@@ -455,9 +455,11 @@ const BlogPost = () => {
             <p className="text-muted-foreground mb-6">
               Starta gratis idag. Första månaden kostar 0 kr.
             </p>
-            <Button variant="frost" size="lg" className="group">
-              Starta gratis
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            <Button variant="frost" size="lg" className="group" asChild>
+              <a href="/app/signup">
+                Starta gratis
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
           </div>
 

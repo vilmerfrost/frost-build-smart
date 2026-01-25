@@ -1,6 +1,10 @@
 // Shared constants for the Frost Bygg website
 
-export const PRODUCTION_URL = 'https://frostsolutions.se';
+// App URL for CTA links - points to the Next.js app at /app
+export const PRODUCTION_URL = '/app';
+
+// Full domain for external references (emails, etc.)
+export const DOMAIN = 'https://frostsolutions.se';
 
 // Animation timing constants for consistent motion
 export const ANIMATION = {
