@@ -55,7 +55,7 @@ export function HeroSection() {
               <span className="text-primary font-medium">Automatisk. Garanterad.</span>
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Enhanced */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -64,14 +64,28 @@ export function HeroSection() {
             >
               <a
                 href={`${PRODUCTION_URL}/signup`}
-                className="btn-glow flex items-center gap-2 text-lg"
+                className="group relative px-8 py-4 rounded-xl font-semibold text-white text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(22 100% 55%), hsl(22 100% 48%))',
+                  boxShadow: '0 4px 20px hsl(22 100% 55% / 0.4)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 40px hsl(22 100% 55% / 0.6)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, hsl(22 100% 60%), hsl(22 100% 52%))';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 20px hsl(22 100% 55% / 0.4)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, hsl(22 100% 55%), hsl(22 100% 48%))';
+                }}
               >
-                Starta gratis
-                <ArrowRight className="h-5 w-5" />
+                <span className="flex items-center gap-2">
+                  Starta gratis
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+                </span>
               </a>
               <a 
                 href={`${PRODUCTION_URL}/demo`}
-                className="text-white/40 hover:text-white transition-colors flex items-center gap-1"
+                className="text-white/40 hover:text-white hover:underline underline-offset-4 transition-all duration-200 flex items-center gap-1 text-base"
               >
                 Boka en demo
                 <ArrowRight className="h-4 w-4" />
@@ -89,25 +103,34 @@ export function HeroSection() {
             </motion.p>
           </div>
 
-          {/* Right: Phone Mockup */}
+          {/* Right: Phone Mockup with GLOW */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="relative"
           >
-            {/* Large warm orange glow behind phone */}
-            <div 
-              className="absolute -inset-8 sm:-inset-16 blur-3xl opacity-25"
+            {/* CRITICAL: Large pulsing orange glow behind phone */}
+            <motion.div 
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] pointer-events-none"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(25 100% 55%) 0%, hsl(22 100% 50% / 0.6) 30%, transparent 70%)',
-                boxShadow: '0 0 120px 60px hsl(22 100% 55% / 0.15)',
+                background: 'radial-gradient(circle, hsl(22 100% 55% / 0.35) 0%, hsl(22 100% 55% / 0.15) 40%, transparent 70%)',
+                filter: 'blur(80px)',
+              }}
+              animate={{
+                opacity: [0.25, 0.4, 0.25],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: 'easeInOut',
               }}
             />
             
             {/* Phone frame */}
             <motion.div
-              className="relative mx-auto w-[260px] sm:w-[300px]"
+              className="relative mx-auto w-[260px] sm:w-[300px] z-10"
               style={{
                 perspective: '1000px',
               }}
@@ -121,7 +144,7 @@ export function HeroSection() {
                 ease: 'easeInOut',
               }}
             >
-              <div className="relative bg-zinc-900 rounded-[3rem] p-3 border border-white/10 shadow-2xl shadow-primary/10">
+              <div className="relative bg-zinc-900 rounded-[3rem] p-3 border border-white/10 shadow-2xl shadow-primary/20">
                 {/* Dynamic Island */}
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full" />
                 
@@ -172,16 +195,28 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating badge next to phone */}
+              {/* CRITICAL: Enhanced floating badge */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 20, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute -right-4 sm:-right-8 top-1/3 px-3 py-2 rounded-lg bg-black/60 backdrop-blur-sm border border-primary/40 shadow-[0_0_20px_hsl(22_100%_55%/0.3)]"
+                whileHover={{ scale: 1.05 }}
+                className="absolute -right-2 sm:-right-6 lg:-right-12 top-1/4 z-20"
               >
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  <span className="text-xs text-white/90 whitespace-nowrap">🔥 Ny: AI-fakturaläsning</span>
+                <div 
+                  className="px-4 py-2.5 rounded-full backdrop-blur-md cursor-pointer transition-all duration-200"
+                  style={{
+                    background: 'hsl(22 100% 55% / 0.15)',
+                    border: '1px solid hsl(22 100% 55%)',
+                    boxShadow: '0 0 25px hsl(22 100% 55% / 0.4), inset 0 0 20px hsl(22 100% 55% / 0.1)',
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🔥</span>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-semibold text-orange-300 whitespace-nowrap">Nytt: AI-Fakturaläsning</span>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
