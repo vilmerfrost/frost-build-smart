@@ -1,6 +1,5 @@
 import { Navbar } from '@/components/linear/Navbar';
 import { HeroSection } from '@/components/linear/HeroSection';
-import { TestimonialSection } from '@/components/linear/TestimonialSection';
 import { BentoFeatures } from '@/components/linear/BentoFeatures';
 import { SpeedStats } from '@/components/linear/SpeedStats';
 import { ComparisonSection } from '@/components/linear/ComparisonSection';
@@ -15,7 +14,6 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <TestimonialSection />
         <BentoFeatures />
         <SpeedStats />
         <ComparisonSection />
