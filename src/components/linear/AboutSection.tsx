@@ -1,42 +1,21 @@
 import { motion } from 'framer-motion';
 import { Wrench, Zap, Lock, Handshake, Quote } from 'lucide-react';
 
-const teamMembers = [
-  {
-    initials: 'VF',
-    name: 'Vilmer Frost',
-    title: 'Grundare & CEO',
-    background: '16-årig entreprenör från Stockholm',
-  },
-  {
-    initials: 'AE',
-    name: 'Alexander Eriksson',
-    title: 'CTO & Co-founder',
-    background: 'Full-stack developer, AI specialist',
-  },
-  {
-    initials: 'SL',
-    name: 'Sofia Lindström',
-    title: 'Head of Product',
-    background: 'Ex-Byggmax, design & product expert',
-  },
-];
-
 const values = [
   {
     icon: Wrench,
     title: 'Byggnäringen först',
-    description: 'Vi bygger för byggare, inte för finansanalytiker',
+    description: 'Jag bygger för byggare, inte för finansanalytiker',
   },
   {
     icon: Zap,
     title: 'Enkel och snabb',
-    description: 'Ingen komplexitet. Ingen onödig features. Bara vad du behöver.',
+    description: 'Ingen komplexitet. Inga onödiga features. Bara vad du behöver.',
   },
   {
     icon: Lock,
     title: 'Säkert och privat',
-    description: 'Dina data är dina. Vi säljer dem aldrig.',
+    description: 'Dina data är dina. Jag säljer dem aldrig.',
   },
   {
     icon: Handshake,
@@ -63,10 +42,10 @@ export function AboutSection() {
               className="mb-12"
             >
               <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                Varför vi byggde Frost
+                Varför jag byggde Frost
               </h2>
               <p className="text-xl text-white/40">
-                En lösning för det vi älskar
+                En lösning för det jag älskar
               </p>
             </motion.div>
 
@@ -84,17 +63,17 @@ export function AboutSection() {
                 <span className="text-white font-medium"> för</span> bygget.
               </p>
               <p className="text-white/60 leading-relaxed">
-                Vi tröttnade på att se duktiga hantverkare slösa timmar på Excel och 
-                pappersarbete. Så vi byggde Frost – ett verktyg som förstår bygget och 
+                Jag tröttnade på att se duktiga hantverkare slösa timmar på Excel och 
+                pappersarbete. Så jag byggde Frost – ett verktyg som förstår bygget och 
                 automatiserar det tråkiga jobbet.
               </p>
               <p className="text-white/60 leading-relaxed">
-                Idag hjälper vi över <span className="text-primary font-semibold">500 svenska byggföretag</span> att 
+                Nu vill jag hjälpa <span className="text-primary font-semibold">svenska byggföretag</span> att 
                 fokusera på det som spelar roll: att bygga.
               </p>
             </motion.div>
 
-            {/* Team Section */}
+            {/* Founder Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,33 +81,34 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Byggt av byggare</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Vem ligger bakom Frost?</h3>
               <p className="text-lg text-white/40 mb-8">
-                Vi förstår bygget för vi jobbar <span className="italic">med</span> bygget
+                Solo-grundare med passion för byggbranschen
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {teamMembers.map((member, index) => (
-                  <motion.div
-                    key={member.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                    viewport={{ once: true }}
-                    className="p-4 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all duration-300"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all duration-300"
+              >
+                <div className="flex items-start gap-5">
+                  <div 
+                    className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0"
+                    style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.3))' }}
                   >
-                    <div 
-                      className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center mb-4"
-                      style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.3))' }}
-                    >
-                      <span className="text-primary font-bold text-lg">{member.initials}</span>
-                    </div>
-                    <h4 className="text-white font-bold">{member.name}</h4>
-                    <p className="text-sm text-white/40 mb-2">{member.title}</p>
-                    <p className="text-xs text-white/30">{member.background}</p>
-                  </motion.div>
-                ))}
-              </div>
+                    <span className="text-primary font-bold text-xl">VF</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-lg">Vilmer Frost</h4>
+                    <p className="text-sm text-primary mb-2">Grundare & Utvecklare</p>
+                    <p className="text-sm text-white/40">
+                      16-årig entreprenör från Stockholm. Bygger Frost för att göra byggbranschens administration enklare.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
 
             {/* Values */}
@@ -138,7 +118,7 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-white mb-8">Vad vi bryr oss om</h3>
+              <h3 className="text-2xl font-bold text-white mb-8">Vad jag bryr mig om</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {values.map((value, index) => (
                   <motion.div
@@ -179,7 +159,7 @@ export function AboutSection() {
               </div>
 
               <blockquote className="text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 mt-4">
-                "Vi tror att den bästa tekniken är den du inte märker. 
+                "Jag tror att den bästa tekniken är den du inte märker. 
                 Frost ska bara <span className="text-primary font-semibold">fungera</span> – 
                 så du kan fokusera på att bygga något fantastiskt."
               </blockquote>
@@ -200,8 +180,8 @@ export function AboutSection() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/10">
                 <div className="text-center">
-                  <p className="text-2xl lg:text-3xl font-bold text-primary">500+</p>
-                  <p className="text-xs text-white/40 mt-1">Företag</p>
+                  <p className="text-2xl lg:text-3xl font-bold text-primary">1</p>
+                  <p className="text-xs text-white/40 mt-1">Grundare</p>
                 </div>
                 <div className="text-center">
                   <p className="text-2xl lg:text-3xl font-bold text-white">2026</p>

@@ -1,60 +1,40 @@
 import { motion } from 'framer-motion';
-import { Check, X, Rocket, Building, Shield, ArrowRight } from 'lucide-react';
+import { Check, X, Rocket, Shield, ArrowRight } from 'lucide-react';
 
 const PRODUCTION_URL = 'https://frostsolutions.se';
 
 const tiers = [
   {
-    name: 'Starter',
-    price: '199',
-    billing: 'Per användare, minst 2 användare',
-    description: 'För små byggföretag (1-5 anställda)',
-    icon: Building,
-    featured: false,
-    cta: 'Starta gratis',
-    ctaNote: 'Ingen kreditkort krävs',
-    ctaHref: `${PRODUCTION_URL}/signup`,
-    features: [
-      { name: 'Tidrapportering', included: true },
-      { name: 'AI-fakturatolkning', included: true },
-      { name: 'Enkla rapporter', included: true },
-      { name: 'Upp till 1 projekt', included: true },
-      { name: 'Advanced ÄTA-hantering', included: false },
-      { name: 'API-åtkomst', included: false },
-      { name: 'Priority support', included: false },
-    ],
-  },
-  {
     name: 'Pro',
     price: '499',
-    billing: 'Per användare, minst 2 användare',
-    description: 'Vår mest populära plan för växande företag (5-25 anställda)',
+    billing: 'Allt inkluderat. Obegränsat antal användare.',
+    description: 'Allt du behöver för att automatisera din byggadministration',
     icon: Rocket,
     featured: true,
-    badge: 'POPULÄR',
+    badge: 'REKOMMENDERAD',
     cta: 'Starta gratis',
-    ctaNote: '14 dagar gratis trial',
+    ctaNote: '30 dagar gratis trial • Ingen kreditkort krävs',
     ctaHref: `${PRODUCTION_URL}/signup`,
     features: [
-      { name: 'Allt från Starter', included: true },
-      { name: 'Unlimited projekt', included: true },
+      { name: 'Obegränsat antal användare', included: true },
+      { name: 'Obegränsat antal projekt', included: true },
+      { name: 'AI-fakturatolkning', included: true },
+      { name: 'Tidrapportering & GPS', included: true },
       { name: 'Advanced ÄTA-hantering', included: true },
-      { name: 'Custom integrationer', included: true },
-      { name: 'Team collaboration', included: true },
+      { name: 'Fortnox & Visma-integration', included: true },
+      { name: 'Löneexport på ett klick', included: true },
       { name: 'Priority support', included: true },
-      { name: 'API-åtkomst', included: false },
-      { name: 'White-label option', included: false },
     ],
   },
   {
     name: 'Enterprise',
     price: 'Kontakta oss',
     billing: null,
-    description: 'För större organisationer (25+ anställda)',
+    description: 'För större organisationer med specialbehov',
     icon: Shield,
     featured: false,
     cta: 'Boka demo',
-    ctaNote: 'Meddela oss dina krav',
+    ctaNote: 'Skräddarsydd lösning för ditt företag',
     ctaHref: `${PRODUCTION_URL}/demo`,
     isEnterprise: true,
     features: [
@@ -86,11 +66,11 @@ export function PricingSection() {
             Enkla, transparenta priser
           </h2>
           <p className="text-lg text-white/40 max-w-xl mx-auto">
-            Välj den plan som passar din verksamhet. Ingen hidden fees.
+            En plan. Allt inkluderat. Inga dolda avgifter.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {tiers.map((tier, index) => (
             <motion.div
               key={tier.name}
@@ -100,7 +80,7 @@ export function PricingSection() {
               viewport={{ once: true }}
               className={`relative rounded-2xl p-6 lg:p-8 transition-all duration-300 ${
                 tier.featured
-                  ? 'bg-zinc-900/80 border-2 border-primary scale-[1.02] shadow-[0_0_40px_hsl(22_100%_55%/0.2)]'
+                  ? 'bg-zinc-900/80 border-2 border-primary shadow-[0_0_40px_hsl(22_100%_55%/0.2)]'
                   : 'bg-zinc-900/50 border border-white/10 hover:border-white/20'
               }`}
             >
@@ -137,7 +117,7 @@ export function PricingSection() {
                 </div>
 
                 {tier.billing && (
-                  <p className="text-xs text-white/40">* {tier.billing}</p>
+                  <p className="text-sm text-primary font-medium">{tier.billing}</p>
                 )}
 
                 <p className="text-sm text-white/50 mt-3">{tier.description}</p>
@@ -166,9 +146,7 @@ export function PricingSection() {
                   className={`w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
                     tier.featured
                       ? 'btn-glow'
-                      : tier.isEnterprise
-                      ? 'border-2 border-primary text-primary hover:bg-primary/10'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      : 'border-2 border-primary text-primary hover:bg-primary/10'
                   }`}
                 >
                   {tier.cta}
@@ -194,19 +172,19 @@ export function PricingSection() {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <FAQItem
               question="Kan jag byta plan senare?"
-              answer="Ja, du kan uppgradera eller nedgradera din plan när som helst. Ändringar träder i kraft direkt."
+              answer="Ja, du kan uppgradera till Enterprise när som helst. Kontakta oss för skräddarsydda lösningar."
             />
             <FAQItem
               question="Finns det setup-kostnad?"
-              answer="Nej, det finns ingen setup-kostnad. Betala bara för din valda plan."
+              answer="Nej, det finns ingen setup-kostnad. Betala bara 499 kr/månad efter din gratis trial."
             />
             <FAQItem
               question="Vad ingår i trial-perioden?"
-              answer="Du får full tillgång till alla Pro-funktioner i 14 dagar helt gratis."
+              answer="Du får full tillgång till alla Pro-funktioner i 30 dagar helt gratis. Ingen kreditkort krävs."
             />
             <FAQItem
-              question="Kan ni anpassa priser för enterprise?"
-              answer="Absolut! Kontakta oss för skräddarsydda lösningar och volymrabatter."
+              question="Hur många användare kan jag ha?"
+              answer="Obegränsat! 499 kr/månad täcker hela ditt team, oavsett storlek."
             />
           </div>
         </motion.div>
