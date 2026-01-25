@@ -1,10 +1,35 @@
 import { motion } from 'framer-motion';
-import { FileSpreadsheet, AlertCircle, Clock, Brain, Sparkles, Zap } from 'lucide-react';
+import { FileSpreadsheet, Clock, Ban, Brain, Zap, CheckCircle, XCircle, AlertCircle, Rocket, Frown, Smile } from 'lucide-react';
+
+const comparisons = [
+  {
+    old: { icon: FileSpreadsheet, text: 'Excel-helvetet', subtext: 'Manuellt kaos' },
+    new: { icon: Brain, text: 'AI gör jobbet', subtext: 'Automatisk kontroll' },
+  },
+  {
+    old: { icon: Clock, text: '2+ timmar per vecka', subtext: 'På administration' },
+    new: { icon: Zap, text: '5 minuter per vecka', subtext: 'Med Frost' },
+  },
+  {
+    old: { icon: Ban, text: 'Missar ROT-avdrag', subtext: 'Förlorade pengar' },
+    new: { icon: CheckCircle, text: 'Hittar varje krona', subtext: 'Som du är berättigad till' },
+  },
+  {
+    old: { icon: AlertCircle, text: 'Ingen översikt', subtext: 'Problem uppstår sent' },
+    new: { icon: Rocket, text: 'Automatiska alerts', subtext: 'Innan det blir problem' },
+  },
+];
 
 export function ComparisonSection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 gradient-radial-center" />
+    <section className="py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, hsl(22 100% 55% / 0.05), transparent)',
+        }}
+      />
       
       <div className="section-container relative z-10">
         <motion.div
@@ -14,178 +39,136 @@ export function ComparisonSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Framtid vs förfluten
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Före och efter <span className="text-primary">Frost</span>
           </h2>
-          <p className="text-lg text-white/50 max-w-xl mx-auto">
+          <p className="text-lg text-white/40 max-w-xl mx-auto">
             Se skillnaden med dina egna ögon
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Old way */}
+        {/* Comparison Grid */}
+        <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {/* Old Way Card */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bento-card p-8 relative"
+            className="relative p-8 rounded-2xl bg-red-500/5 border border-red-500/20"
           >
-            <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-medium">
-              Gamla sättet
-            </div>
-
-            <h3 className="text-2xl font-bold text-white/60 mb-8">
-              Manuellt kaos
-            </h3>
-
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-red-500/10">
-                  <FileSpreadsheet className="h-6 w-6 text-red-400/60" />
-                </div>
-                <div>
-                  <p className="text-white/60 font-medium">Excel-helvetet</p>
-                  <p className="text-sm text-white/40">Spridda filer, gamla versioner, ingen överblick</p>
-                </div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-red-500/20">
+                <Frown className="h-6 w-6 text-red-400" />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-red-500/10">
-                  <Clock className="h-6 w-6 text-red-400/60" />
-                </div>
-                <div>
-                  <p className="text-white/60 font-medium">2+ timmar/vecka</p>
-                  <p className="text-sm text-white/40">På administration som ingen vill göra</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-red-500/10">
-                  <AlertCircle className="h-6 w-6 text-red-400/60" />
-                </div>
-                <div>
-                  <p className="text-white/60 font-medium">Missade ROT-avdrag</p>
-                  <p className="text-sm text-white/40">Pengar som försvinner på grund av slarv</p>
-                </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white">Gamla sättet</h3>
+                <p className="text-sm text-red-400/70">Tidskrävande och felbenäget</p>
               </div>
             </div>
 
-            {/* Visual: Stack of messy papers */}
-            <div className="mt-8 relative h-40 flex items-end justify-center">
-              {[...Array(4)].map((_, i) => (
+            <div className="space-y-4">
+              {comparisons.map((item, index) => (
                 <motion.div
-                  key={i}
-                  className="absolute bg-white/5 border border-white/10 rounded-lg w-32 h-40"
-                  style={{
-                    transform: `rotate(${(i - 1.5) * 8}deg) translateX(${(i - 1.5) * 15}px)`,
-                    zIndex: i,
-                  }}
-                  animate={{
-                    y: [0, -5, 0],
-                    rotate: [(i - 1.5) * 8, (i - 1.5) * 8 + 2, (i - 1.5) * 8],
-                  }}
-                  transition={{
-                    duration: 3,
-                    delay: i * 0.2,
-                    repeat: Infinity,
-                  }}
+                  key={`old-${index}`}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/10"
                 >
-                  <div className="p-3 space-y-2">
-                    <div className="h-2 bg-white/10 rounded w-full" />
-                    <div className="h-2 bg-white/5 rounded w-3/4" />
-                    <div className="h-2 bg-white/5 rounded w-1/2" />
+                  <div className="p-2 rounded-lg bg-red-500/20">
+                    <item.old.icon className="h-5 w-5 text-red-400" />
                   </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-white">{item.old.text}</p>
+                    <p className="text-sm text-white/40">{item.old.subtext}</p>
+                  </div>
+                  <XCircle className="h-5 w-5 text-red-400/60" />
                 </motion.div>
               ))}
             </div>
+
+            {/* Visual chaos element */}
+            <div className="absolute -bottom-4 -right-4 opacity-20">
+              <div className="relative">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-16 h-20 bg-white/10 rounded-lg border border-white/20"
+                    style={{
+                      transform: `rotate(${(i - 1) * 15}deg) translateX(${i * 10}px)`,
+                    }}
+                    animate={{
+                      rotate: [(i - 1) * 15, (i - 1) * 15 + 5, (i - 1) * 15],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* New way */}
+          {/* New Way Card */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bento-card p-8 relative border-primary/20"
-            style={{
-              boxShadow: '0 0 60px -20px hsl(22 100% 55% / 0.3)',
-            }}
+            className="relative p-8 rounded-2xl bg-success/5 border border-success/20"
           >
-            <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium">
-              Frost-sättet
-            </div>
-
-            <h3 className="text-2xl font-bold text-white mb-8">
-              Automatisk kontroll
-            </h3>
-
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-primary/20">
-                  <Brain className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">AI gör jobbet</p>
-                  <p className="text-sm text-white/50">Automatisk tolkning och kategorisering</p>
-                </div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-success/20">
+                <Smile className="h-6 w-6 text-success" />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-primary/20">
-                  <Zap className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">5 minuter/vecka</p>
-                  <p className="text-sm text-white/50">Bara en snabb genomgång behövs</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-primary/20">
-                  <Sparkles className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">Aldrig missa avdrag</p>
-                  <p className="text-sm text-white/50">AI hittar varje krona du har rätt till</p>
-                </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white">Frost-sättet</h3>
+                <p className="text-sm text-success/70">Snabbt och automatiskt</p>
               </div>
             </div>
 
-            {/* Visual: Clean dashboard */}
-            <div className="mt-8 relative h-40">
+            <div className="space-y-4">
+              {comparisons.map((item, index) => (
+                <motion.div
+                  key={`new-${index}`}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-success/5 border border-success/10"
+                >
+                  <div className="p-2 rounded-lg bg-success/20">
+                    <item.new.icon className="h-5 w-5 text-success" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-white">{item.new.text}</p>
+                    <p className="text-sm text-white/40">{item.new.subtext}</p>
+                  </div>
+                  <CheckCircle className="h-5 w-5 text-success/60" />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Visual order element */}
+            <div className="absolute -bottom-4 -right-4 opacity-30">
               <motion.div
-                className="absolute inset-0 bg-zinc-900 rounded-xl border border-white/10 overflow-hidden"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
+                className="w-24 h-16 bg-success/10 rounded-lg border border-success/20 flex items-center justify-center"
+                animate={{
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
               >
-                {/* Dashboard header */}
-                <div className="flex items-center gap-2 px-4 py-2 border-b border-white/5">
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                </div>
-                
-                {/* Dashboard content */}
-                <div className="p-4 grid grid-cols-3 gap-3">
-                  <motion.div
-                    className="bg-primary/10 rounded-lg p-2"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="h-6 w-12 bg-primary/30 rounded mb-1" />
-                    <div className="h-2 w-8 bg-white/20 rounded" />
-                  </motion.div>
-                  <div className="bg-white/5 rounded-lg p-2">
-                    <div className="h-6 w-10 bg-white/10 rounded mb-1" />
-                    <div className="h-2 w-6 bg-white/10 rounded" />
-                  </div>
-                  <div className="bg-success/10 rounded-lg p-2">
-                    <div className="h-6 w-8 bg-success/30 rounded mb-1" />
-                    <div className="h-2 w-10 bg-white/10 rounded" />
-                  </div>
+                <div className="space-y-1">
+                  <div className="h-1.5 w-16 bg-success/40 rounded" />
+                  <div className="h-1.5 w-12 bg-success/30 rounded" />
+                  <div className="h-1.5 w-14 bg-success/20 rounded" />
                 </div>
               </motion.div>
             </div>
