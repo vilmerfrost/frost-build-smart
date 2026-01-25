@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Scan, MapPin, AlertTriangle, Check, Download, Loader2, Plug, Clock } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Scan, MapPin, AlertTriangle, Check, Download, Loader2, Plug } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 
 const integrationLogos = [
   { name: 'BankID', color: '#235971' },
@@ -21,7 +21,7 @@ export function BentoFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
             Allt du behöver. <span className="text-white/40">Inget trams.</span>
@@ -31,65 +31,122 @@ export function BentoFeatures() {
           </p>
         </motion.div>
 
-        {/* True Bento Grid - 12 column layout */}
-        <div className="grid grid-cols-12 gap-4">
-          {/* AI Invoice - 6 cols, 2 rows - LARGEST */}
+        {/* TRUE Bento Grid - Mixed sizes */}
+        <div className="grid grid-cols-6 gap-4 lg:gap-6">
+          {/* CARD 1: AI-Fakturatolkning - LARGE (3 cols, 2 rows) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-6 row-span-2 bento-card min-h-[400px]"
+            className="col-span-6 lg:col-span-3 lg:row-span-2"
           >
-            <InvoiceScanCard />
+            <BentoCard className="h-full min-h-[420px]">
+              <InvoiceScanCard />
+            </BentoCard>
           </motion.div>
 
-          {/* GPS Check-in - 3 cols, 1 row - SMALL */}
+          {/* CARD 2: GPS-Incheckning - SMALL (3 cols, 1 row) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="col-span-12 sm:col-span-6 md:col-span-3 bento-card min-h-[200px]"
+            className="col-span-6 sm:col-span-3 lg:col-span-3"
           >
-            <GPSCard />
+            <BentoCard className="h-full min-h-[200px]">
+              <GPSCard />
+            </BentoCard>
           </motion.div>
 
-          {/* ÄTA Handling - 3 cols, 1 row - SMALL */}
+          {/* CARD 3: Smart ÄTA - SMALL (3 cols, 1 row) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            className="col-span-12 sm:col-span-6 md:col-span-3 bento-card min-h-[200px]"
+            className="col-span-6 sm:col-span-3 lg:col-span-3"
           >
-            <ATACard />
+            <BentoCard className="h-full min-h-[200px]">
+              <ATACard />
+            </BentoCard>
           </motion.div>
 
-          {/* Integrations - 6 cols, 1 row - WIDE */}
+          {/* CARD 4: Integrations - WIDE (3 cols, 1 row) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-6 bento-card min-h-[180px]"
+            className="col-span-6 lg:col-span-3"
           >
-            <IntegrationsCard />
+            <BentoCard className="h-full min-h-[180px]">
+              <IntegrationsCard />
+            </BentoCard>
           </motion.div>
 
-          {/* Export - 6 cols, 1 row - WIDE */}
+          {/* CARD 5: Löneunderlag - WIDE (3 cols, 1 row) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-6 bento-card min-h-[180px]"
+            className="col-span-6 lg:col-span-3"
           >
-            <ExportCard />
+            <BentoCard className="h-full min-h-[180px]">
+              <ExportCard />
+            </BentoCard>
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+// Enhanced Bento Card with hover effects
+function BentoCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    cardRef.current.style.setProperty('--mouse-x', `${x}%`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}%`);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      className={`
+        group relative rounded-2xl bg-zinc-900/80 backdrop-blur-sm border border-white/[0.08] 
+        p-6 lg:p-8 overflow-hidden transition-all duration-500 cursor-pointer
+        hover:border-white/[0.15] hover:bg-zinc-800/80 hover:-translate-y-1
+        ${className}
+      `}
+      style={{
+        boxShadow: '0 0 0 transparent',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 0 40px hsl(22 100% 55% / 0.15)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 0 0 transparent';
+      }}
+    >
+      {/* Radial gradient follow mouse */}
+      <div 
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(22 100% 55% / 0.08), transparent 40%)',
+        }}
+      />
+      <div className="relative z-10 h-full">
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -105,23 +162,33 @@ function InvoiceScanCard() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 rounded-xl bg-primary/20" style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.4))' }}>
-          <Scan className="h-6 w-6 text-primary" />
+      {/* Header */}
+      <div className="flex items-start gap-4 mb-8">
+        <div 
+          className="p-3 rounded-xl bg-primary/20 flex-shrink-0"
+          style={{ filter: 'drop-shadow(0 0 12px hsl(22 100% 55% / 0.5))' }}
+        >
+          <Scan className="h-8 w-8 text-primary" />
         </div>
         <div>
-          <h3 className="text-2xl font-extrabold text-white">AI-Fakturatolkning</h3>
-          <p className="text-sm text-white/50">Fota kvittot. AI läser, kategoriserar och sparar. Färdigt på 5 sekunder.</p>
+          <h3 className="text-2xl lg:text-[28px] font-bold text-white mb-2">AI-Fakturatolkning</h3>
+          <p className="text-base text-white/50 leading-relaxed">
+            Fota kvittot. AI läser, kategoriserar och sparar. Färdigt på 5 sekunder.
+          </p>
         </div>
       </div>
 
+      {/* Animation area */}
       <div className="flex-1 relative flex items-center justify-center">
         {/* Receipt mockup */}
-        <div className="relative w-52 bg-white/[0.03] rounded-xl border border-white/10 p-5">
+        <div className="relative w-48 lg:w-56 bg-white/[0.03] rounded-xl border border-white/10 p-5">
           {/* Scanning line */}
           <motion.div
-            className="absolute left-0 right-0 h-0.5 bg-primary shadow-[0_0_15px_hsl(22_100%_55%)]"
-            style={{ top: `${scanProgress}%` }}
+            className="absolute left-0 right-0 h-1 bg-primary rounded-full"
+            style={{ 
+              top: `${scanProgress}%`,
+              boxShadow: '0 0 20px 5px hsl(22 100% 55% / 0.6)',
+            }}
           />
           
           {/* Receipt content */}
@@ -148,7 +215,7 @@ function InvoiceScanCard() {
         </div>
 
         {/* Extracted data preview */}
-        <div className="absolute right-2 sm:right-4 top-4 space-y-2">
+        <div className="absolute right-0 lg:right-4 top-0 space-y-2">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: scanProgress > 30 ? 1 : 0, x: scanProgress > 30 ? 0 : 20 }}
@@ -183,18 +250,21 @@ function GPSCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/20" style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.4))' }}>
-          <MapPin className="h-5 w-5 text-primary" />
+        <div 
+          className="p-2.5 rounded-xl bg-primary/20"
+          style={{ filter: 'drop-shadow(0 0 10px hsl(22 100% 55% / 0.5))' }}
+        >
+          <MapPin className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-extrabold text-white">GPS-Incheckning</h3>
-          <p className="text-xs text-white/50">Jobba var. Vi fixar tiden automatiskt.</p>
+          <h3 className="text-xl font-bold text-white">GPS-Incheckning</h3>
+          <p className="text-sm text-white/50">Automatisk tid när du anländer.</p>
         </div>
       </div>
 
       <div className="flex-1 relative flex items-center justify-center">
         {/* Map mockup */}
-        <div className="relative w-full h-28 bg-zinc-900/50 rounded-lg overflow-hidden">
+        <div className="relative w-full h-24 bg-zinc-900/50 rounded-lg overflow-hidden">
           {/* Grid lines */}
           <div className="absolute inset-0 opacity-20">
             {[...Array(4)].map((_, i) => (
@@ -258,12 +328,15 @@ function ATACard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/20" style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.4))' }}>
-          <AlertTriangle className="h-5 w-5 text-primary" />
+        <div 
+          className="p-2.5 rounded-xl bg-primary/20"
+          style={{ filter: 'drop-shadow(0 0 10px hsl(22 100% 55% / 0.5))' }}
+        >
+          <AlertTriangle className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-extrabold text-white">Smart ÄTA-Hantering</h3>
-          <p className="text-xs text-white/50">Löses automatiskt. Dokumenterat. Klart.</p>
+          <h3 className="text-xl font-bold text-white">Smart ÄTA-Hantering</h3>
+          <p className="text-sm text-white/50">Dokumenterat. Automatiskt. Klart.</p>
         </div>
       </div>
 
@@ -292,7 +365,7 @@ function ATACard() {
           )}
         </motion.div>
 
-        <p className="text-xs text-white/40">
+        <p className="text-sm text-white/40">
           {state === 'warning' && 'Ärende upptäckt'}
           {state === 'processing' && 'Bearbetar...'}
           {state === 'done' && 'Löst & dokumenterat'}
@@ -306,12 +379,15 @@ function IntegrationsCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/20" style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.4))' }}>
-          <Plug className="h-5 w-5 text-primary" />
+        <div 
+          className="p-2.5 rounded-xl bg-primary/20"
+          style={{ filter: 'drop-shadow(0 0 10px hsl(22 100% 55% / 0.5))' }}
+        >
+          <Plug className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-extrabold text-white">Kopplas till dina system</h3>
-          <p className="text-xs text-white/50">Direkt integration med lönesystem, bank, och bokföring</p>
+          <h3 className="text-xl font-bold text-white">Kopplas till dina system</h3>
+          <p className="text-sm text-white/50">Lönesystem, bank, och bokföring</p>
         </div>
       </div>
 
@@ -324,7 +400,8 @@ function IntegrationsCard() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
+              whileHover={{ scale: 1.08, y: -2 }}
+              className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300"
             >
               <span className="text-sm font-medium text-white/70">{logo.name}</span>
             </motion.div>
@@ -357,12 +434,15 @@ function ExportCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/20" style={{ filter: 'drop-shadow(0 0 8px hsl(22 100% 55% / 0.4))' }}>
-          <Download className="h-5 w-5 text-primary" />
+        <div 
+          className="p-2.5 rounded-xl bg-primary/20"
+          style={{ filter: 'drop-shadow(0 0 10px hsl(22 100% 55% / 0.5))' }}
+        >
+          <Download className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-extrabold text-white">Löneunderlag på en knapp</h3>
-          <p className="text-xs text-white/50">Tidrapporter, OB-ersättning, ROT-avdrag. Klart på 10 sekunder.</p>
+          <h3 className="text-xl font-bold text-white">Löneunderlag på en knapp</h3>
+          <p className="text-sm text-white/50">Klart på 10 sekunder.</p>
         </div>
       </div>
 
@@ -371,7 +451,13 @@ function ExportCard() {
           <button
             onClick={() => setExporting(true)}
             disabled={exporting}
-            className="w-full btn-glow py-2.5 text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full py-3 px-6 rounded-xl font-semibold text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            style={{
+              background: exporting 
+                ? 'hsl(22 100% 45%)' 
+                : 'linear-gradient(135deg, hsl(22 100% 55%), hsl(22 100% 48%))',
+              boxShadow: '0 4px 15px hsl(22 100% 55% / 0.3)',
+            }}
           >
             {exporting ? (
               <>
