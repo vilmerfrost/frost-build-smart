@@ -1,8 +1,8 @@
 import { Navbar } from '@/components/linear/Navbar';
 import { HeroSection } from '@/components/linear/HeroSection';
-import { SocialProofMarquee } from '@/components/linear/SocialProofMarquee';
+import { TestimonialSection } from '@/components/linear/TestimonialSection';
 import { BentoFeatures } from '@/components/linear/BentoFeatures';
-import { CommandPalette } from '@/components/linear/CommandPalette';
+import { SpeedStats } from '@/components/linear/SpeedStats';
 import { ComparisonSection } from '@/components/linear/ComparisonSection';
 import { CTASection } from '@/components/linear/CTASection';
 import { Footer } from '@/components/linear/Footer';
@@ -13,9 +13,9 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <SocialProofMarquee />
+        <TestimonialSection />
         <BentoFeatures />
-        <CommandPalette />
+        <SpeedStats />
         <ComparisonSection />
         <CTASection />
       </main>

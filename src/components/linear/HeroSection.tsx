@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const PRODUCTION_URL = 'https://frostsolutions.se';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
       {/* Background effects */}
       <div className="absolute inset-0 gradient-radial-top" />
       <div className="absolute inset-0 grid-pattern opacity-50" />
@@ -14,7 +14,7 @@ export function HeroSection() {
       <motion.div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, hsl(22 100% 55% / 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, hsl(22 100% 55% / 0.12) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.1, 1],
@@ -28,86 +28,92 @@ export function HeroSection() {
       />
 
       <div className="section-container relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] mb-8"
-          >
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm text-white/70">Nytt: AI-driven fakturaläsning</span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
-          >
-            <span className="text-gradient-hero">Driv byggprojektet</span>
-            <br />
-            <span className="text-glow-orange">på autopilot.</span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Automatisk tidrapportering, fakturatolkning och ÄTA-hantering.
-            <br className="hidden sm:block" />
-            Byggd för hantverkare, inte kontorsråttor.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a
-              href={`${PRODUCTION_URL}/signup`}
-              className="btn-glow flex items-center gap-2 text-lg"
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          {/* Left: Text Content */}
+          <div className="text-center lg:text-left">
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-6"
             >
-              Starta gratis
-              <ArrowRight className="h-5 w-5" />
-            </a>
-            <button className="btn-glass flex items-center gap-2 text-lg">
-              <Play className="h-5 w-5" />
-              Boka demo
-            </button>
-          </motion.div>
+              <span className="text-gradient-hero">Driv byggprojektet</span>
+              <br />
+              <span className="text-glow-orange">på autopilot.</span>
+            </motion.h1>
 
-          {/* Phone Mockup */}
+            {/* Subheadline - Benefit focused */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg sm:text-xl text-white/50 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+            >
+              AI gör den administrativa delen.
+              <br className="hidden sm:block" />
+              Du fokuserar på att bygga.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
+            >
+              <a
+                href={`${PRODUCTION_URL}/signup`}
+                className="btn-glow flex items-center gap-2 text-lg"
+              >
+                Starta gratis
+                <ArrowRight className="h-5 w-5" />
+              </a>
+              <a 
+                href={`${PRODUCTION_URL}/demo`}
+                className="text-white/40 hover:text-white transition-colors flex items-center gap-1"
+              >
+                Boka en demo
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </motion.div>
+
+            {/* Sub-CTA Text */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-xs text-white/30 mt-4"
+            >
+              Ingen kreditkort krävs • Klar på 2 minuter
+            </motion.p>
+          </div>
+
+          {/* Right: Phone Mockup */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative mt-20"
+            className="relative"
           >
-            {/* Warm orange glow behind phone */}
+            {/* Large warm orange glow behind phone */}
             <div 
-              className="absolute inset-0 -inset-x-20 -inset-y-10 blur-3xl opacity-20"
+              className="absolute -inset-8 sm:-inset-16 blur-3xl opacity-25"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(25 100% 60%) 0%, hsl(22 100% 55% / 0.5) 40%, transparent 70%)',
+                background: 'radial-gradient(ellipse at center, hsl(25 100% 55%) 0%, hsl(22 100% 50% / 0.6) 30%, transparent 70%)',
+                boxShadow: '0 0 120px 60px hsl(22 100% 55% / 0.15)',
               }}
             />
             
             {/* Phone frame */}
             <motion.div
-              className="relative mx-auto w-[280px] sm:w-[320px]"
+              className="relative mx-auto w-[260px] sm:w-[300px]"
               style={{
                 perspective: '1000px',
               }}
               animate={{
-                rotateY: [-5, 5, -5],
-                rotateX: [2, -2, 2],
+                rotateY: [-3, 3, -3],
+                rotateX: [1, -1, 1],
               }}
               transition={{
                 duration: 8,
@@ -115,7 +121,7 @@ export function HeroSection() {
                 ease: 'easeInOut',
               }}
             >
-              <div className="relative bg-zinc-900 rounded-[3rem] p-3 border border-white/10 shadow-2xl">
+              <div className="relative bg-zinc-900 rounded-[3rem] p-3 border border-white/10 shadow-2xl shadow-primary/10">
                 {/* Dynamic Island */}
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full" />
                 
@@ -165,6 +171,19 @@ export function HeroSection() {
                   </div>
                 </div>
               </div>
+
+              {/* Floating badge next to phone */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="absolute -right-4 sm:-right-8 top-1/3 px-3 py-2 rounded-lg bg-black/60 backdrop-blur-sm border border-primary/40 shadow-[0_0_20px_hsl(22_100%_55%/0.3)]"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="text-xs text-white/90 whitespace-nowrap">🔥 Ny: AI-fakturaläsning</span>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
