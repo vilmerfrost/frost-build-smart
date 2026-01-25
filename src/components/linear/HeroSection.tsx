@@ -50,9 +50,9 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg sm:text-xl text-white/50 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
             >
-              AI gör den administrativa delen.
+              Spara 10+ timmar per vecka på administration.
               <br className="hidden sm:block" />
-              Du fokuserar på att bygga.
+              <span className="text-primary font-medium">Automatisk. Garanterad.</span>
             </motion.p>
 
             {/* CTA Buttons */}
