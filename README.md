@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Frost Bygg - Sales Site
 
 ## Project info
 
