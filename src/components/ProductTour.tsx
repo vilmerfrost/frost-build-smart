@@ -48,7 +48,7 @@ const TOUR_STEPS: TourStep[] = [
     title: 'Klart att använda!',
     description: 'All data synkroniseras direkt med dina projekt. Skapa offerter, följ leveranser och fakturera - allt på ett ställe.',
     icon: <CheckCircle className="h-6 w-6" />,
-    highlight: '30 dagars gratis trial med pengarna-tillbaka-garanti',
+    highlight: '30 dagars gratis trial - ingen bindningstid',
   },
 ];
 

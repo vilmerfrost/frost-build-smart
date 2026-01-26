@@ -92,7 +92,7 @@ export async function sendChatMessage(data: {
 }): Promise<EmailResponse> {
   return sendEmail({
     type: 'chat',
-    email: data.email || 'anonymous@frostbygg.se',
+    email: data.email || 'vilmer.frost@gmail.com',
     message: data.message,
     metadata: {
       conversationHistory: data.conversationHistory,

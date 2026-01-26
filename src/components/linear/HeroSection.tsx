@@ -120,7 +120,7 @@ export function HeroSection() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <BadgeCheck className="h-4 w-4 text-green-500" />
-                <span className="text-sm">30 dagars pengarna-tillbaka-garanti</span>
+                <span className="text-sm">30 dagars gratis trial</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Shield className="h-4 w-4" />

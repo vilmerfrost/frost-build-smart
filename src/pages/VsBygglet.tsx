@@ -18,7 +18,7 @@ const featureComparison = [
   { feature: 'API-åtkomst', frost: true, bygglet: true, category: 'Teknik' },
   { feature: 'Obegränsade användare', frost: true, bygglet: false, category: 'Prissättning' },
   { feature: 'Ingen setup-kostnad', frost: true, bygglet: false, category: 'Prissättning' },
-  { feature: 'Pengarna-tillbaka-garanti', frost: true, bygglet: false, category: 'Support' },
+  { feature: '30 dagars gratis trial', frost: true, bygglet: false, category: 'Support' },
   { feature: 'Svensk support', frost: true, bygglet: true, category: 'Support' },
 ];
 
@@ -54,7 +54,7 @@ const advantages = [
   {
     icon: Shield,
     title: 'Ingen risk',
-    description: '30 dagars pengarna-tillbaka-garanti. Testa utan risk.',
+    description: '30 dagars gratis trial. Ingen bindningstid.',
   },
   {
     icon: Headphones,
@@ -121,7 +121,7 @@ const VsBygglet = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-foreground">30 dagars pengarna-tillbaka-garanti</span>
+                  <span className="text-foreground">30 dagars gratis trial</span>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ const VsBygglet = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <XCircle className="h-5 w-5 text-red-500" />
-                  <span className="text-muted-foreground">Ingen pengarna-tillbaka-garanti</span>
+                  <span className="text-muted-foreground">Ingen gratis trial</span>
                 </div>
               </div>
             </div>
@@ -269,7 +269,7 @@ const VsBygglet = () => {
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a
-                href="mailto:hej@frostbygg.se?subject=Migration från Bygglet"
+                href="mailto:vilmer.frost@gmail.com?subject=Migration från Bygglet"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-border text-foreground font-semibold hover:bg-muted transition-colors"
               >
                 Få hjälp med migration

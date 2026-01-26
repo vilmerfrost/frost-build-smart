@@ -155,9 +155,9 @@ export function Footer() {
               <h4 className="text-sm font-semibold text-white mb-4">Juridiskt</h4>
               <ul className="space-y-2">
                 <li><Link to="/security" className="text-sm text-white/40 hover:text-white transition-colors">Säkerhet</Link></li>
-                <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">Integritetspolicy</a></li>
-                <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">Användarvillkor</a></li>
-                <li><a href="#" className="text-sm text-white/40 hover:text-white transition-colors">GDPR</a></li>
+                <li><a href="mailto:vilmer.frost@gmail.com?subject=Integritetspolicy" className="text-sm text-white/40 hover:text-white transition-colors">Integritetspolicy</a></li>
+                <li><a href="mailto:vilmer.frost@gmail.com?subject=Användarvillkor" className="text-sm text-white/40 hover:text-white transition-colors">Användarvillkor</a></li>
+                <li><a href="mailto:vilmer.frost@gmail.com?subject=GDPR Information" className="text-sm text-white/40 hover:text-white transition-colors">GDPR</a></li>
               </ul>
             </div>
           </div>
@@ -189,7 +189,7 @@ export function Footer() {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a 
-                href="mailto:kontakt@frostsolutions.se"
+                href="mailto:vilmer.frost@gmail.com"
                 className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all"
                 aria-label="Skicka e-post till oss"
               >

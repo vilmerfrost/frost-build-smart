@@ -270,11 +270,11 @@ const Developers = () => {
               Kontakta oss för API-åtkomst och teknisk support.
             </p>
             <a
-              href="mailto:dev@frostbygg.se"
+              href="mailto:vilmer.frost@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition-colors"
             >
               <Code className="h-5 w-5" />
-              dev@frostbygg.se
+              vilmer.frost@gmail.com
             </a>
           </motion.div>
         </div>

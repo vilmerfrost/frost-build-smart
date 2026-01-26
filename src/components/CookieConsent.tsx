@@ -74,14 +74,14 @@ export function CookieConsent() {
             {/* Description */}
             <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
               Vi använder cookies för att analysera trafik och förbättra vår tjänst. 
-              Läs vår{' '}
-              <Link 
-                to="/privacy" 
+              Kontakta oss på{' '}
+              <a 
+                href="mailto:vilmer.frost@gmail.com?subject=Integritetspolicy" 
                 className="text-primary hover:underline underline-offset-2"
               >
-                integritetspolicy
-              </Link>{' '}
-              för mer information.
+                vilmer.frost@gmail.com
+              </a>{' '}
+              för mer information om integritet.
             </p>
 
             {/* Actions */}

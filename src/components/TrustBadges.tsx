@@ -3,8 +3,8 @@ import { Shield, Clock, CreditCard } from 'lucide-react';
 const guarantees = [
   {
     icon: Shield,
-    title: '30 dagars garanti',
-    description: 'Inte nöjd? Pengarna tillbaka, inga frågor.',
+    title: 'Ingen bindningstid',
+    description: 'Avsluta när du vill. Inga avtal.',
   },
   {
     icon: Clock,

@@ -111,7 +111,7 @@ export function AboutSection() {
                   </p>
                   {/* Direct contact */}
                   <a 
-                    href="mailto:vilmer@frostbygg.se"
+                    href="mailto:vilmer.frost@gmail.com"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
@@ -199,11 +199,11 @@ export function AboutSection() {
                   </div>
                 </div>
                 <a 
-                  href="mailto:vilmer@frostbygg.se"
+                  href="mailto:vilmer.frost@gmail.com"
                   className="hidden sm:flex items-center gap-1.5 text-sm text-primary hover:underline"
                 >
                   <Mail className="h-4 w-4" />
-                  <span>vilmer@frostbygg.se</span>
+                  <span>vilmer.frost@gmail.com</span>
                 </a>
               </div>
 

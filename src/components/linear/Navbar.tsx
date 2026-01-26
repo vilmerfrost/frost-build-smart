@@ -109,6 +109,12 @@ export function Navbar() {
               Boka demo
             </Link>
             <a
+              href={`${PRODUCTION_URL}/login`}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Logga in
+            </a>
+            <a
               href={`${PRODUCTION_URL}/signup`}
               className="group flex items-center gap-2 text-sm px-5 py-2.5 bg-foreground text-background font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105"
             >
@@ -170,6 +176,12 @@ export function Navbar() {
                   >
                     Boka demo
                   </Link>
+                  <a
+                    href={`${PRODUCTION_URL}/login`}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Logga in
+                  </a>
                   <a
                     href={`${PRODUCTION_URL}/signup`}
                     className="flex items-center justify-center gap-2 bg-foreground text-background font-semibold rounded-lg px-4 py-2.5 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"

@@ -15,7 +15,7 @@ const footerLinks = {
     { label: 'Integritet', href: '#' },
   ],
   kontakt: [
-    { label: 'hej@frostbygg.se', href: 'mailto:hej@frostbygg.se', icon: Mail },
+    { label: 'vilmer.frost@gmail.com', href: 'mailto:vilmer.frost@gmail.com', icon: Mail },
     { label: 'LinkedIn', href: '#', icon: Linkedin },
     { label: 'GitHub', href: '#', icon: Github },
   ],
@@ -34,7 +34,7 @@ export function EnhancedFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-accent flex items-center justify-center text-accent-foreground font-bold text-sm">
                 FB
               </div>

@@ -7,10 +7,10 @@ export function MoneyBackGuarantee() {
         <Shield className="h-8 w-8" />
       </div>
       <h4 className="text-lg font-bold text-foreground mb-2 text-center">
-        30-dagars pengarna-tillbaka-garanti
+        30 dagars gratis trial
       </h4>
       <p className="text-sm text-muted-foreground text-center max-w-xs">
-        Ingen risk. Ingen bindningstid. Full återbetalning om du inte är nöjd.
+        Ingen risk. Ingen bindningstid. Testa alla funktioner gratis.
       </p>
       <div className="flex items-center gap-2 mt-4 text-sm text-success">
         <Check className="h-4 w-4" />

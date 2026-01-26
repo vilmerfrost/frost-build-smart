@@ -25,7 +25,7 @@ const footerLinks = {
 const socialLinks = [
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
   { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Mail, href: 'mailto:hej@frostbygg.se', label: 'Email' },
+  { icon: Mail, href: 'mailto:vilmer.frost@gmail.com', label: 'Email' },
 ];
 
 export function Footer() {
@@ -35,7 +35,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-frost text-primary-foreground">
                 <Snowflake className="h-5 w-5" />
               </div>

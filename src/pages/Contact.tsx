@@ -191,8 +191,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">E-post</h3>
                     <p className="text-muted-foreground text-sm mb-2">Skriv direkt till oss</p>
-                    <a href="mailto:hej@frostbygg.se" className="text-primary hover:underline font-medium">
-                      hej@frostbygg.se
+                    <a href="mailto:vilmer.frost@gmail.com" className="text-primary hover:underline font-medium">
+                      vilmer.frost@gmail.com
                     </a>
                   </div>
                 </div>
@@ -246,11 +246,11 @@ const Contact = () => {
                   Som nystartat företag ger jag personlig support. Kontakta mig direkt om du har frågor.
                 </p>
                 <a 
-                  href="mailto:vilmer@frostbygg.se" 
+                  href="mailto:vilmer.frost@gmail.com" 
                   className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
                 >
                   <Mail className="h-4 w-4" />
-                  vilmer@frostbygg.se
+                  vilmer.frost@gmail.com
                 </a>
               </div>
             </motion.div>
