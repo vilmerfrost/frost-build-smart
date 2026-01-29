@@ -15,6 +15,7 @@ import { CustomCursor } from '@/components/CustomCursor';
 import { PageLoader } from '@/components/PageLoader';
 import { ChatWidget } from '@/components/ChatWidget';
 import { ProductTour } from '@/components/ProductTour';
+import { ExitIntentPopup } from '@/components/ExitIntentPopup';
 
 const Index = () => {
   return (
@@ -54,7 +55,8 @@ const Index = () => {
         <BackToTop />
         <ChatWidget />
         <ProductTour autoStart={false} />
-        
+        <ExitIntentPopup />
+
         {/* Cookie consent banner */}
         <CookieConsent />
       </div>

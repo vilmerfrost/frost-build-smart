@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Flame, X, Check, Loader2 } from 'lucide-react';
+import { Flame, X, Check, Loader2, AlertCircle } from 'lucide-react';
+import { requestDemo } from '@/lib/supabase-client';
 
 export function WaitlistCTA() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const [spotsLeft, setSpotsLeft] = useState(() => {
     const saved = localStorage.getItem('frostbygg-spots');
     if (saved) return parseInt(saved);
@@ -14,18 +16,36 @@ export function WaitlistCTA() {
     return random;
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const formData = new FormData(formRef.current!);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string,
+      phone: formData.get('phone') as string || undefined,
+      preferred_date: undefined,
+    };
+
+    const result = await requestDemo(data);
+
+    if (result.success) {
       setIsSubmitted(true);
       setSpotsLeft((prev) => {
         const newValue = prev - 1;
         localStorage.setItem('frostbygg-spots', newValue.toString());
         return newValue;
       });
-    }, 1500);
+    } else {
+      setError(result.error || 'Failed to submit request');
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -74,12 +94,19 @@ export function WaitlistCTA() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                  {error && (
+                    <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600">
+                      <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-sm">{error}</span>
+                    </div>
+                  )}
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1">
                       Företagsnamn *
                     </label>
                     <input
+                      name="company"
                       type="text"
                       required
                       className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/20"
@@ -91,6 +118,7 @@ export function WaitlistCTA() {
                       Ditt namn *
                     </label>
                     <input
+                      name="name"
                       type="text"
                       required
                       className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/20"
@@ -102,6 +130,7 @@ export function WaitlistCTA() {
                       Email *
                     </label>
                     <input
+                      name="email"
                       type="email"
                       required
                       className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/20"
@@ -113,19 +142,10 @@ export function WaitlistCTA() {
                       Telefon (valfritt)
                     </label>
                     <input
+                      name="phone"
                       type="tel"
                       className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/20"
                       placeholder="070-123 45 67"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">
-                      Varför vill du använda Frost Bygg?
-                    </label>
-                    <textarea
-                      rows={3}
-                      className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/20 resize-none"
-                      placeholder="Berätta lite om ditt företag och dina behov..."
                     />
                   </div>
                   <Button

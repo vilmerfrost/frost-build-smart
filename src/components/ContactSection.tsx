@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ArrowRight, Send, Calendar, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, Send, Calendar, Check, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 import { PRODUCTION_URL } from '@/lib/constants';
+import { requestDemo } from '@/lib/supabase-client';
 
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
@@ -12,10 +13,28 @@ export function ContactSection() {
     email: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setError('');
+    setIsSubmitting(true);
+
+    const result = await requestDemo({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+    });
+
+    if (result.success) {
+      setIsSubmitted(true);
+      setFormData({ name: '', company: '', email: '' });
+    } else {
+      setError(result.error || 'Failed to submit request');
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -87,6 +106,12 @@ export function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                {error && (
+                  <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 text-sm">
+                    <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                    {error}
+                  </div>
+                )}
                 <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     type="text"
@@ -113,9 +138,18 @@ export function ContactSection() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                 />
-                <Button variant="default" size="lg" type="submit" className="w-full">
-                  <Send className="mr-2 h-4 w-4" />
-                  Skicka förfrågan
+                <Button variant="default" size="lg" type="submit" disabled={isSubmitting} className="w-full">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Skickar...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Skicka förfrågan
+                    </>
+                  )}
                 </Button>
               </form>
             )}

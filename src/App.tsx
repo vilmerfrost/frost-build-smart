@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { EasterEggsProvider } from "@/components/EasterEggs";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { SEOHead } from "@/components/SEOHead";
 import Index from "./pages/Index";
 import Changelog from "./pages/Changelog";
 import Blog from "./pages/Blog";
@@ -21,6 +22,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <EasterEggsProvider>
+        <SEOHead />
         <Toaster />
         <Sonner />
         <BrowserRouter>
