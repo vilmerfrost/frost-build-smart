@@ -67,7 +67,7 @@ export function HeroSection() {
           <div className="animate-fade-in-up stagger-5 mt-8 flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success" />
-              Gratis i 30 dagar
+              Gratis i 14 dagar
             </span>
             <span className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success" />

@@ -67,7 +67,7 @@ export function ContactSection() {
               </p>
 
               <ul className="mt-6 space-y-3">
-                {['30 dagars gratis provperiod', 'Ingen bindningstid', 'Full tillgång till alla funktioner'].map((item) => (
+                {['14 dagars gratis provperiod', 'Ingen bindningstid', 'Full tillgång till alla funktioner'].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-foreground">
                     <div className="h-5 w-5 rounded-full bg-success/10 flex items-center justify-center">
                       <Check className="h-3 w-3 text-success" />

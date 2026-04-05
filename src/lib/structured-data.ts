@@ -1,39 +1,35 @@
+const SITE_URL = 'https://frostsolutions.se';
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Frost Bygg",
-  "description": "AI-driven projektverktyg för svenska byggföretag. ROT-automation, faktura-läsning, tidrapportering.",
-  "url": "https://frostbygg.se",
-  "logo": "https://frostbygg.se/favicon.ico",
+  "name": "Frost Solutions",
+  "description": "AI-driven projektverktyg för svenska byggföretag. ROT-automation, fakturatolkning, tidrapportering.",
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/favicon.ico`,
   "sameAs": [
     "https://www.linkedin.com/company/frost-solutions",
-    "https://twitter.com/frostbygg",
   ],
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Service",
-    "email": "support@frostbygg.se",
-    "url": "https://frostbygg.se/kontakt"
+    "email": "vilmer.frost@gmail.com",
+    "url": `${SITE_URL}/contact`
   }
 };
 
 export const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Frost Bygg",
+  "name": "Frost Solutions",
   "applicationCategory": "BusinessApplication",
-  "description": "AI-driven projektverktyg för svenska byggföretag med ROT-automation och faktura-läsning",
+  "description": "AI-driven projektverktyg för svenska byggföretag med ROT-automation och fakturatolkning",
   "operatingSystem": "Web",
   "offers": {
     "@type": "Offer",
     "price": "499",
     "priceCurrency": "SEK",
-    "priceValidUntil": "2025-12-31"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "ratingCount": "42"
+    "priceValidUntil": "2026-12-31"
   }
 };
 
@@ -43,18 +39,18 @@ export const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Vad är Frost Bygg?",
+      "name": "Vad är Frost Solutions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Frost Bygg är ett AI-driven projektverktyg för svenska byggföretag som automatiserar ROT-ansökningar, läser fakturor med AI och hanterar tidrapportering."
+        "text": "Frost Solutions är ett AI-drivet projektverktyg för svenska byggföretag som automatiserar ROT-ansökningar, läser fakturor med AI och hanterar tidrapportering."
       }
     },
     {
       "@type": "Question",
-      "name": "Hur mycket kostar Frost Bygg?",
+      "name": "Hur mycket kostar Frost Solutions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Frost Bygg kostar 499 kr/månad. Du får 30 dagars gratis provperiod och kan avsluta när som helst utan bindningstid."
+        "text": "Frost Solutions kostar 499 kr/månad med obegränsade användare. Du får 14 dagars gratis provperiod och kan avsluta när som helst utan bindningstid."
       }
     },
     {
@@ -62,15 +58,15 @@ export const faqSchema = {
       "name": "Hur lång tid tar det att komma igång?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Du kan komma igång på bara 2 minuter. Registrera dig, anslut dina byggen, och börja spara tid direkt."
+        "text": "Du kan komma igång på 2 minuter. Registrera dig, lägg till ditt första projekt och börja spara tid direkt."
       }
     },
     {
       "@type": "Question",
-      "name": "Är det säkert att ansluta mina bankkonton?",
+      "name": "Fungerar Frost utan internet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja, vi använder de senaste säkerhetsprotokollen och bank-grade encryption för alla anslutningar. Vi lagrar aldrig dina autentiseringsuppgifter."
+        "text": "Ja, Frost har fullständigt offline-stöd via PWA. Alla ändringar synkas automatiskt när du får uppkoppling igen."
       }
     }
   ]
@@ -88,7 +84,10 @@ export const breadcrumbSchema = (items: Array<{ name: string; url: string }>) =>
 });
 
 export function injectSchemaScript(schema: object) {
+  const id = `ld-json-${JSON.stringify(schema).slice(0, 40)}`;
+  if (document.getElementById(id)) return;
   const script = document.createElement('script');
+  script.id = id;
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(schema);
   document.head.appendChild(script);

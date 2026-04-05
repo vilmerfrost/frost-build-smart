@@ -143,7 +143,7 @@ export function ROICalculator() {
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
-              30 dagars gratis provperiod. Ingen bindningstid.
+              14 dagars gratis provperiod. Ingen bindningstid.
             </p>
           </div>
         </div>

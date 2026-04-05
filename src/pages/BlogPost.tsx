@@ -61,7 +61,7 @@ Med Frost Byggs ROT-automation matar du in grunddata om projektet - adress, kost
 
 ## Kom igång idag
 
-Testa Frost Bygg gratis i 30 dagar. Ingen bindningstid, inget kreditkort krävs. Se själv hur mycket tid du kan spara.
+Testa Frost Bygg gratis i 14 dagar. Ingen bindningstid, inget kreditkort krävs. Se själv hur mycket tid du kan spara.
     `,
   },
   'bygglet-vs-frost-bygg': {

@@ -1,178 +1,135 @@
 import { motion } from 'framer-motion';
-import { FileSpreadsheet, Clock, Ban, Brain, Zap, CheckCircle, XCircle, AlertCircle, Rocket, Frown, Smile } from 'lucide-react';
+import {
+  AlertCircle,
+  Ban,
+  Bell,
+  Brain,
+  CheckCircle,
+  Clock,
+  FileSpreadsheet,
+  Frown,
+  Smile,
+  Zap,
+} from 'lucide-react';
 
 const comparisons = [
   {
-    old: { icon: FileSpreadsheet, text: 'Excel-helvetet', subtext: 'Manuellt kaos' },
-    new: { icon: Brain, text: 'AI gör jobbet', subtext: 'Automatisk kontroll' },
+    old: { icon: FileSpreadsheet, text: 'Excel-kaos', subtext: 'Manuellt och rörigt' },
+    new: { icon: Brain, text: 'AI gör jobbet', subtext: 'Strukturerat och konsekvent' },
   },
   {
-    old: { icon: Clock, text: '2+ timmar per vecka', subtext: 'På administration' },
-    new: { icon: Zap, text: '5 minuter per vecka', subtext: 'Med Frost' },
+    old: { icon: Clock, text: '2+ timmar/vecka', subtext: 'Borta på administration' },
+    new: { icon: Zap, text: '5 minuter/vecka', subtext: 'Mer tid för det som räknas' },
   },
   {
-    old: { icon: Ban, text: 'Missar ROT-avdrag', subtext: 'Förlorade pengar' },
-    new: { icon: CheckCircle, text: 'Hittar varje krona', subtext: 'Som du är berättigad till' },
+    old: { icon: Ban, text: 'Missar ROT-avdrag', subtext: 'Pengar som aldrig kommer tillbaka' },
+    new: { icon: CheckCircle, text: 'Hittar varje krona', subtext: 'Det du har rätt till' },
   },
   {
-    old: { icon: AlertCircle, text: 'Ingen översikt', subtext: 'Problem uppstår sent' },
-    new: { icon: Rocket, text: 'Automatiska alerts', subtext: 'Innan det blir problem' },
+    old: { icon: AlertCircle, text: 'Ingen översikt', subtext: 'Överraskningar i efterhand' },
+    new: { icon: Bell, text: 'Automatiska notiser', subtext: 'Du hänger med i realtid' },
   },
 ];
 
 export function ComparisonSection() {
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, hsl(22 100% 55% / 0.05), transparent)',
-        }}
-      />
-      
-      <div className="section-container relative z-10">
+    <section className="py-24 sm:py-32 bg-[#f5f3f0]">
+      <div className="max-w-7xl mx-auto px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Före och efter <span className="text-primary">Frost</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1b1c1a] mb-4">
+            Före och efter <span className="text-[#f26522]">Frost</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Se skillnaden med dina egna ögon
+          <p className="text-lg text-[#594138] max-w-lg mx-auto">
+            Gamla sättet jämfört med hur det kan vara.
           </p>
         </motion.div>
 
-        {/* Comparison Grid */}
-        <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Old Way Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
+          {/* Old way */}
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="relative p-8 rounded-2xl bg-red-500/5 border border-red-500/20"
+            className="rounded-2xl bg-[#fdf2f0] p-8"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-red-500/20">
-                <Frown className="h-6 w-6 text-red-400" />
+            <header className="mb-8 flex items-center gap-4 pb-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+                <Frown className="h-6 w-6 text-red-500" strokeWidth={1.75} />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-foreground">Gamla sättet</h3>
-                <p className="text-sm text-red-400/70">Tidskrävande och felbenäget</p>
+                <h3 className="text-xl font-bold text-[#1b1c1a]">Gamla sättet</h3>
+                <p className="text-sm text-[#594138]">Tungt, långsamt och riskfyllt</p>
               </div>
-            </div>
+            </header>
 
-            <div className="space-y-4">
-              {comparisons.map((item, index) => (
-                <motion.div
+            <ul className="flex flex-col gap-4">
+              {comparisons.map((row, index) => (
+                <motion.li
                   key={`old-${index}`}
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0.35, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/10"
+                  className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm"
                 >
-                  <div className="p-2 rounded-lg bg-red-500/20">
-                    <item.old.icon className="h-5 w-5 text-red-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50">
+                    <row.old.icon className="h-5 w-5 text-red-500" strokeWidth={1.75} />
                   </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-foreground">{item.old.text}</p>
-                    <p className="text-sm text-muted-foreground">{item.old.subtext}</p>
+                  <div>
+                    <p className="font-bold text-[#1b1c1a]">{row.old.text}</p>
+                    <p className="text-sm text-[#594138]">{row.old.subtext}</p>
                   </div>
-                  <XCircle className="h-5 w-5 text-red-400/60" />
-                </motion.div>
+                </motion.li>
               ))}
-            </div>
+            </ul>
+          </motion.article>
 
-            {/* Visual chaos element */}
-            <div className="absolute -bottom-4 -right-4 opacity-20">
-              <div className="relative">
-                {[...Array(3)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-16 h-20 bg-white/10 rounded-lg border border-white/20"
-                    style={{
-                      transform: `rotate(${(i - 1) * 15}deg) translateX(${i * 10}px)`,
-                    }}
-                    animate={{
-                      rotate: [(i - 1) * 15, (i - 1) * 15 + 5, (i - 1) * 15],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* New Way Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+          {/* New way */}
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
             viewport={{ once: true }}
-            className="relative p-8 rounded-2xl bg-success/5 border border-success/20"
+            className="rounded-2xl bg-[#f0fdf4] p-8"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-success/20">
-                <Smile className="h-6 w-6 text-success" />
+            <header className="mb-8 flex items-center gap-4 pb-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
+                <Smile className="h-6 w-6 text-emerald-500" strokeWidth={1.75} />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-foreground">Frost-sättet</h3>
-                <p className="text-sm text-success/70">Snabbt och automatiskt</p>
+                <h3 className="text-xl font-bold text-[#1b1c1a]">Med Frost</h3>
+                <p className="text-sm text-[#594138]">Lätt, snabbt och tryggt</p>
               </div>
-            </div>
+            </header>
 
-            <div className="space-y-4">
-              {comparisons.map((item, index) => (
-                <motion.div
+            <ul className="flex flex-col gap-4">
+              {comparisons.map((row, index) => (
+                <motion.li
                   key={`new-${index}`}
-                  initial={{ opacity: 0, x: 10 }}
+                  initial={{ opacity: 0, x: 8 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0.35, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-success/5 border border-success/10"
+                  className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm"
                 >
-                  <div className="p-2 rounded-lg bg-success/20">
-                    <item.new.icon className="h-5 w-5 text-success" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-50">
+                    <row.new.icon className="h-5 w-5 text-emerald-500" strokeWidth={1.75} />
                   </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-foreground">{item.new.text}</p>
-                    <p className="text-sm text-muted-foreground">{item.new.subtext}</p>
+                  <div>
+                    <p className="font-bold text-[#1b1c1a]">{row.new.text}</p>
+                    <p className="text-sm text-[#594138]">{row.new.subtext}</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-success/60" />
-                </motion.div>
+                </motion.li>
               ))}
-            </div>
-
-            {/* Visual order element */}
-            <div className="absolute -bottom-4 -right-4 opacity-30">
-              <motion.div
-                className="w-24 h-16 bg-success/10 rounded-lg border border-success/20 flex items-center justify-center"
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              >
-                <div className="space-y-1">
-                  <div className="h-1.5 w-16 bg-success/40 rounded" />
-                  <div className="h-1.5 w-12 bg-success/30 rounded" />
-                  <div className="h-1.5 w-14 bg-success/20 rounded" />
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+            </ul>
+          </motion.article>
         </div>
       </div>
     </section>

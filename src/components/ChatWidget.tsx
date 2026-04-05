@@ -29,7 +29,7 @@ const QUICK_REPLIES = [
 
 const BOT_RESPONSES: Record<string, string> = {
   'berätta mer om frost': 'Frost Bygg är en AI-driven plattform som automatiserar administration för byggföretag. Vi hjälper dig spara 10+ timmar per vecka! Integrerar med Fortnox, Visma och BankID. 🏗️',
-  'vad kostar det?': 'Vi har en enkel prissättning: 499 kr/månad med obegränsat antal användare! Du får 30 dagars gratis trial - ingen bindningstid. 💰',
+  'vad kostar det?': 'Vi har en enkel prissättning: 499 kr/månad med obegränsat antal användare! Du får 14 dagars gratis trial - ingen bindningstid. 💰',
   'boka en demo': 'Perfekt! Skicka ett meddelande så kontaktar Vilmer (grundaren) dig personligen för en demo. Du kan också maila direkt till vilmer.frost@gmail.com 📅',
   'kontakta support': 'Som nystartat företag får du direkt kontakt med grundaren! Maila vilmer.frost@gmail.com. Vi svarar inom 24 timmar! 📧',
 };
@@ -138,13 +138,13 @@ export function ChatWidget() {
       {/* Chat Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-primary text-white shadow-lg transition-all ${
+        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-primary text-foreground shadow-lg transition-all ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         }`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         style={{
-          boxShadow: '0 4px 20px hsl(22 100% 55% / 0.4)',
+          boxShadow: '0 4px 20px hsl(18 100% 55% / 0.35)',
         }}
         aria-label="Öppna chatt"
       >
@@ -200,7 +200,7 @@ export function ChatWidget() {
                     className={`max-w-[80%] px-4 py-2.5 rounded-2xl ${
                       message.isBot
                         ? 'bg-secondary text-foreground rounded-bl-md'
-                        : 'bg-primary text-white rounded-br-md'
+                        : 'bg-primary text-foreground rounded-br-md'
                     }`}
                   >
                     <p className="text-sm leading-relaxed">{message.text}</p>
@@ -273,7 +273,7 @@ export function ChatWidget() {
                     />
                     <button
                       onClick={handleEmailSubmit}
-                      className="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                      className="px-3 py-2 bg-primary text-foreground rounded-lg hover:bg-primary/90 transition-colors"
                     >
                       <CheckCircle className="h-4 w-4" />
                     </button>
@@ -301,7 +301,7 @@ export function ChatWidget() {
                 <button
                   type="submit"
                   disabled={!inputValue.trim()}
-                  className="p-2.5 bg-primary text-white rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="p-2.5 bg-primary text-foreground rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   aria-label="Skicka meddelande"
                 >
                   <Send className="h-5 w-5" />

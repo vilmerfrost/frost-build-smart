@@ -47,9 +47,9 @@ export function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
         >
           {/* Background glow */}
           <div 
-            className="absolute inset-0 opacity-30 pointer-events-none"
+            className="absolute inset-0 opacity-20 pointer-events-none"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, hsl(22 100% 55% / 0.2), transparent 70%)',
+              background: 'radial-gradient(circle at 50% 50%, hsl(18 100% 55% / 0.1), transparent 70%)',
             }}
           />
 
@@ -64,12 +64,12 @@ export function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
             <motion.div
               className="absolute inset-0 rounded-2xl"
               style={{
-                background: 'radial-gradient(circle, hsl(22 100% 55% / 0.4), transparent)',
-                filter: 'blur(20px)',
+                background: 'radial-gradient(circle, hsl(18 100% 55% / 0.22), transparent)',
+                filter: 'blur(16px)',
               }}
               animate={{
                 scale: [1, 1.2, 1],
-                opacity: [0.5, 0.8, 0.5],
+                opacity: [0.35, 0.55, 0.35],
               }}
               transition={{
                 duration: 2,
@@ -83,9 +83,9 @@ export function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
               className="relative p-4 rounded-2xl bg-primary/20 border border-primary/30"
               animate={{
                 boxShadow: [
-                  '0 0 20px hsl(22 100% 55% / 0.3)',
-                  '0 0 40px hsl(22 100% 55% / 0.5)',
-                  '0 0 20px hsl(22 100% 55% / 0.3)',
+                  '0 0 16px hsl(18 100% 55% / 0.18)',
+                  '0 0 28px hsl(18 100% 55% / 0.28)',
+                  '0 0 16px hsl(18 100% 55% / 0.18)',
                 ],
               }}
               transition={{
@@ -133,7 +133,7 @@ export function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
             <motion.div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                background: 'linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)',
               }}
               animate={{ x: [-200, 200] }}
               transition={{

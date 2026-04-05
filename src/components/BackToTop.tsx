@@ -9,14 +9,9 @@ export function BackToTop() {
     const toggleVisibility = () => {
       setIsVisible(window.scrollY > 500);
     };
-
     window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <AnimatePresence>
@@ -26,11 +21,11 @@ export function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.2 }}
-          onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800/90 backdrop-blur-sm border border-white/10 text-white shadow-lg transition-all hover:bg-primary hover:border-primary hover:shadow-[0_0_20px_hsl(22_100%_55%/0.4)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white/80 backdrop-blur-lg shadow-lg text-[#1b1c1a] hover:ember-gradient hover:text-white hover:shadow-[0_0_20px_rgba(242,101,34,0.3)] transition-all focus:outline-none focus:ring-2 focus:ring-[#f26522] focus:ring-offset-2 focus:ring-offset-[#fbf9f6]"
           aria-label="Tillbaka till toppen"
         >
-          <ArrowUp className="h-5 w-5" />
+          <ArrowUp className="h-5 w-5" strokeWidth={1.75} />
         </motion.button>
       )}
     </AnimatePresence>

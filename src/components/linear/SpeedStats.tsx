@@ -1,29 +1,13 @@
 import { motion, useInView } from 'framer-motion';
-import { Scan, MapPin, Download, Zap } from 'lucide-react';
-import { useRef, useEffect, useState } from 'react';
+import { ScanLine, MapPin, FileDown } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  {
-    icon: Scan,
-    time: 5,
-    unit: 'sek',
-    label: 'Scanna faktura',
-  },
-  {
-    icon: MapPin,
-    time: 2,
-    unit: 'sek',
-    label: 'Stämpla in',
-  },
-  {
-    icon: Download,
-    time: 10,
-    unit: 'sek',
-    label: 'Exportera löneunderlag',
-  },
+  { icon: ScanLine, time: 5, unit: 'sek', label: 'Scanna faktura' },
+  { icon: MapPin, time: 2, unit: 'sek', label: 'Stämpla in' },
+  { icon: FileDown, time: 10, unit: 'sek', label: 'Exportera löneunderlag' },
 ];
 
-// Animated counter component
 function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -39,18 +23,10 @@ function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?
       const animate = () => {
         const now = Date.now();
         const progress = Math.min((now - startTime) / (duration * 1000), 1);
-        
-        // Easing function for smooth animation
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentCount = Math.round(easeOutQuart * target);
-        
-        setCount(currentCount);
-
-        if (now < endTime) {
-          requestAnimationFrame(animate);
-        } else {
-          setCount(target);
-        }
+        setCount(Math.round(easeOutQuart * target));
+        if (now < endTime) requestAnimationFrame(animate);
+        else setCount(target);
       };
 
       requestAnimationFrame(animate);
@@ -62,56 +38,56 @@ function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?
 
 export function SpeedStats() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, hsl(22 100% 55% / 0.08), transparent)',
-        }}
-      />
-
-      <div className="section-container relative z-10">
+    <section className="py-20 sm:py-24">
+      <div className="max-w-7xl mx-auto px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.45 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <Zap className="h-4 w-4 text-primary" />
-            <span className="text-sm text-primary font-medium">Hur snabbt är det?</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Blixtsnabbt. <span className="text-white/40">Alltid.</span>
+          <p className="mb-3 text-sm font-bold tracking-widest text-[#f26522] uppercase">
+            Hur snabbt är det?
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1b1c1a]">
+            Blixtsnabbt. <span className="text-[#594138]/40">Alltid.</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-primary/30 transition-all duration-300 group"
-            >
-              <div className="inline-flex p-4 rounded-2xl bg-primary/10 mb-6 group-hover:bg-primary/20 transition-colors" style={{ filter: 'drop-shadow(0 0 12px hsl(22 100% 55% / 0.3))' }}>
-                <stat.icon className="h-8 w-8 text-primary" />
-              </div>
-              
-              <div className="mb-3">
-                <span className="text-6xl sm:text-7xl font-extrabold text-white">
-                  <AnimatedCounter target={stat.time} duration={1.2} />
-                </span>
-                <span className="text-2xl sm:text-3xl font-bold text-white/60 ml-1">{stat.unit}</span>
-              </div>
-              
-              <p className="text-white/50 text-lg">{stat.label}</p>
-            </motion.div>
-          ))}
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.article
+                key={stat.label}
+                className="rounded-2xl bg-white p-8 text-center shadow-sm hover:shadow-lg transition-shadow duration-300"
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                viewport={{ once: true }}
+              >
+                <div className="mb-5 flex justify-center">
+                  <div className="w-14 h-14 rounded-2xl bg-[#f26522]/10 flex items-center justify-center">
+                    <Icon className="h-7 w-7 text-[#f26522]" strokeWidth={1.75} />
+                  </div>
+                </div>
+
+                <div className="mb-3 flex flex-wrap items-baseline justify-center gap-x-2">
+                  <span className="text-5xl font-extrabold tabular-nums tracking-tight text-[#1b1c1a] sm:text-6xl">
+                    <AnimatedCounter target={stat.time} duration={1.2} />
+                  </span>
+                  <span className="text-xl font-bold text-[#594138]/40 sm:text-2xl">
+                    {stat.unit}
+                  </span>
+                </div>
+
+                <p className="text-base font-medium text-[#594138]">
+                  {stat.label}
+                </p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -261,7 +261,7 @@ export function TryROTDemo() {
                   </Button>
                   <Button variant="frost" className="group" asChild>
                     <a href="/app/signup">
-                      Starta gratis - 30 dagars trial
+                      Starta gratis - 14 dagars trial
                     </a>
                   </Button>
                 </div>

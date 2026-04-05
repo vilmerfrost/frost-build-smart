@@ -1,4 +1,4 @@
-// Shared constants for the Frost Bygg website
+// Shared constants for the Frost Solutions website
 
 // App URL for CTA links - points to the Next.js app at /app
 export const PRODUCTION_URL = '/app';

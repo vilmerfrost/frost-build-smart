@@ -74,7 +74,7 @@ export function AboutSection() {
               </div>
               <div>
                 <div className="font-bold text-xl text-foreground">Vilmer Frost</div>
-                <div className="text-muted-foreground">Grundare & VD, 16 år</div>
+                <div className="text-muted-foreground">Grundare & VD, 17 år</div>
                 <div className="text-sm text-primary font-medium mt-1">@vilmerfrost</div>
               </div>
             </div>

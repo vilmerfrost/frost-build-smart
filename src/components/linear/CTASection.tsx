@@ -4,47 +4,47 @@ import { PRODUCTION_URL } from '@/lib/constants';
 
 export function CTASection() {
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Gradient background */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 100%, hsl(22 100% 55% / 0.15), transparent)',
-        }}
-      />
-      
-      <div className="section-container relative z-10">
+    <section className="py-24 sm:py-32 lg:py-40 relative overflow-hidden">
+      {/* Warm background gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#fbf9f6] to-[#fdf6f2]" />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-[20%] left-[10%] w-[40%] h-[60%] rounded-full bg-[#fea27c]/10 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[5%] w-[30%] h-[50%] rounded-full bg-[#f26522]/5 blur-[100px]" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
-            <span className="text-gradient-hero">Bygg mer.</span>
-            <br />
-            <span className="text-gradient-hero">Administrera mindre.</span>
-            <br />
-            <span className="text-glow-orange">Börja idag.</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#1b1c1a] leading-tight mb-6">
+            Bygg mer. Administrera mindre.
           </h2>
 
-          <p className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto mb-12">
-            Öka lönsamheten utan att anställa fler. Frost fixar administrationen.
+          <p className="text-lg md:text-xl text-[#594138] mb-12 max-w-2xl mx-auto leading-relaxed">
+            Gå med de byggföretag som redan sparar 10+ timmar per vecka med Frost. Starta gratis idag.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={`${PRODUCTION_URL}/signup`}
-              className="btn-glow flex items-center gap-2 text-lg px-8 py-4"
+              className="ember-gradient text-white px-12 py-4 rounded-full text-lg font-bold shadow-xl shadow-[#f26522]/20 hover:scale-105 active:scale-95 transition-transform flex items-center gap-2"
             >
-              Starta gratis idag
-              <ArrowRight className="h-5 w-5" />
+              Starta gratis
+              <ArrowRight className="h-5 w-5" strokeWidth={1.75} />
+            </a>
+            <a
+              href={`${PRODUCTION_URL}/demo`}
+              className="bg-[#eae8e5] text-[#a63b00] px-12 py-4 rounded-full text-lg font-bold hover:bg-[#e4e2df] transition-colors"
+            >
+              Boka demo
             </a>
           </div>
-          
-          <p className="text-sm text-white/30 mt-4">
-            Ingen kreditkort krävs • Klar på 2 minuter
+
+          <p className="mt-8 text-sm text-[#594138]/50 font-medium">
+            Inget kreditkort krävs · 14 dagars gratis trial · Avbryt när som helst
           </p>
         </motion.div>
       </div>
